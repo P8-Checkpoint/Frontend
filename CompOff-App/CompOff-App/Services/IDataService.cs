@@ -8,5 +8,10 @@ namespace CompOff_App.Services
 {
     interface IDataService
     {
+        // TODO change return type from VOID to w/e is needed
+        void getcurrentuser();
+        void getjobs();
+        void getlocations();
+
     }
 }
