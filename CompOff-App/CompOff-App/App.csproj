@@ -35,8 +35,9 @@
 		<!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#345DA7" />
         <MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
+      
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#345DA7" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#345DA7" BaseSize="460.03, 269.98" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -49,6 +50,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\logo.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\Fonts\GillSans-Bold.TTF" />
 	  <None Remove="Resources\Fonts\GillSans-Regular.ttf" />
@@ -56,6 +61,7 @@
 	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
 	  <None Remove="Resources\Images\Home.svg" />
 	  <None Remove="Resources\Images\list.svg" />
+	  <None Remove="Resources\Images\logo.svg" />
 	  <None Remove="Resources\Images\NewJob.svg" />
 	</ItemGroup>
 
@@ -91,7 +97,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

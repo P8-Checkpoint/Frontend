@@ -39,6 +39,16 @@
                 </Image>
             </mauiToolkit:AvatarView>
             <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="16"
+                HorizontalOptions="Fill"
+                LineBreakMode="TailTruncation"
+                MaxLines="1"
+                Text="Aloha"
+                TextColor="White"
+                VerticalOptions="End" />
+            <Label
                 Grid.Row="1"
                 Grid.Column="1"
                 FontSize="18"
@@ -47,7 +57,7 @@
                 MaxLines="1"
                 Text="User Name"
                 TextColor="White"
-                VerticalOptions="End" />
+                VerticalOptions="Center" />
         </Grid>
 
         <!--  Spacer  -->
@@ -58,15 +68,7 @@
             Grid.RowSpan="2"
             Grid.Column="2"
             VerticalOptions="End">
-            <Image>
-                <Image.Source>
-                    <FontImageSource
-                        x:Name="TrailingIcon"
-                        FontFamily="MaterialIconsRegular"
-                        Glyph="&#xe5d2;"
-                        Size="40" />
-                </Image.Source>
-            </Image>
+            <Image HeightRequest="50" Source="Splash.svg" />
         </StackLayout>
     </Grid>
 </ContentView>
