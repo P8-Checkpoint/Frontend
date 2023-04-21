@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CompOff_App.Pages.Tabs.JobListPage"
-             Title="JobListPage">
+<ContentPage
+    x:Class="CompOff_App.Pages.Tabs.JobListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="JobListPage">
     <VerticalStackLayout>
-        <Label 
+        <Label
+            HorizontalOptions="Center"
             Text="JobListPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
