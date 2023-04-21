@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rkSm42TpOLhja/0dS82oIkSw2ifx8GSffgQYLaLmiZZzk8cY89ZzZdesF2urCDw1XaqwEUDmd6yP4x5pPu7u+w==",
+  "dgSpecHash": "wUC2sMTPsNn+3/Oy1PHbD2ql0DRi1T2yimIXs10kC0PvoQI4H1PR4fXnIQnY/xMsS1t3IWQZ4U9GhEntSv21EQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alexa\\Desktop\\Haskell\\Sessions\\P8_Frontend\\CompOff-App\\CompOff-App\\App.csproj",
+  "projectFilePath": "C:\\Users\\alexa\\Desktop\\Haskell\\Sessions\\Frontend\\CompOff-App\\CompOff-App\\App.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alexa\\.nuget\\packages\\communitytoolkit.maui\\1.2.0\\communitytoolkit.maui.1.2.0.nupkg.sha512",
     "C:\\Users\\alexa\\.nuget\\packages\\communitytoolkit.maui.core\\1.2.0\\communitytoolkit.maui.core.1.2.0.nupkg.sha512",
