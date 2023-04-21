@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="CompOff_App.Components.IconButton"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:Xamarin.CommunityToolkit.Ports.Effects"
+    x:Name="this">
+
+    <VerticalStackLayout>
+        <Border
+            x:Name="Border"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <HorizontalStackLayout
+                x:Name="GestureContainer"
+                effects:TouchEffect.NormalBackgroundColor="Transparent"
+                effects:TouchEffect.PressedBackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
+                Dark={StaticResource Gray600}}"
+                HorizontalOptions="Center">
+                <StackLayout x:Name="Leading" IsVisible="{Binding ShowLeadingIcon, Source={x:Reference this}}">
+                    <Image HorizontalOptions="Center">
+                        <Image.Source>
+                            <FontImageSource
+                                x:Name="LeadingIcon"
+                                FontFamily="MaterialIconsOutlined"
+                                Glyph="{Binding Glyph, Source={x:Reference this}}"
+                                Size="{Binding IconSize, Source={x:Reference this}}" />
+                        </Image.Source>
+                    </Image>
+                </StackLayout>
+
+                <Label
+                    x:Name="Label"
+                    Padding="0"
+                    FontSize="14"
+                    Text="{Binding Text, Source={x:Reference this}}"
+                    VerticalOptions="Center" />
+
+                <StackLayout x:Name="Trailing" IsVisible="{Binding ShowTrailingIcon, Source={x:Reference this}}">
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                x:Name="TrailingIcon"
+                                FontFamily="MaterialIconsOutlined"
+                                Glyph="{Binding Glyph, Source={x:Reference this}}"
+                                Size="{Binding IconSize, Source={x:Reference this}}" />
+                        </Image.Source>
+                    </Image>
+                </StackLayout>
+            </HorizontalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

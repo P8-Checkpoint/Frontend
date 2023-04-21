@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>App</name>
+    </assembly>
+    <members>
+        <member name="F:CompOff_App.Components.IconButton.TextProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.Text"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.BorderBackgroundColorProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.BorderBackgroundColor"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.TextColorProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.TextColor"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.BorderColorProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.BorderColor"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.IconColorProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.IconColor"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.BorderRadiusProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.BorderRadius"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.IconSizeProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.IconSize"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.GlyphProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.Glyph"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.CommandProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.Command"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.CommandParameterProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.CommandParameter"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.ShowLeadingIconProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.ShowLeadingIcon"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.IconButton.ShowTrailingIconProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.IconButton.ShowTrailingIcon"/> property.
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.Text">
+            <summary>
+            The text to be displayed in the button
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.ShowLeadingIcon">
+            <summary>
+            Whether the first icon should be shown
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.ShowTrailingIcon">
+            <summary>
+            Whether the second icon should be shown
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.BorderBackgroundColor">
+            <summary>
+            The background color of the button
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.TextColor">
+            <summary>
+            The text color of the button
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.BorderColor">
+            <summary>
+            The border color
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.IconColor">
+            <summary>
+            The icon color of the button
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.BorderRadius">
+            <summary>
+            The border radius
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.Glyph">
+            <summary>
+            The glyph symbol which will be used to generate the icon
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.IconSize">
+            <summary>
+            The size of the icons
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.Command">
+            <summary>
+            The command which is executed when the avatar is tapped. This can be used to open a settings-modal or similarly.
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.IconButton.CommandParameter">
+            <summary>
+            Parameters that will be passed to the <see cref="P:CompOff_App.Components.IconButton.Command"/>/>
+            </summary>
+        </member>
+        <member name="T:CompOff_App.Components.NavigationBarPrimary">
+            <summary>
+            This component provides the primary navigation for top-level pages
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.NavigationBarPrimary.LoadCommandProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.NavigationBarPrimary.LoadCommand"/> property.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Components.NavigationBarPrimary.CommandProperty">
+            <summary>
+            Backing BindableProperty for the <see cref="P:CompOff_App.Components.NavigationBarPrimary.Command"/> property.
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.NavigationBarPrimary.LoadCommand">
+            <summary>
+            The Command which will be executed when the component is initialized. This is commonly used to signal the <see cref="!:User"/> should be fetched/>
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.NavigationBarPrimary.Command">
+            <summary>
+            The command which is executed when the Menu is tapped.
+            </summary>
+        </member>
+        <member name="F:CompOff_App.Viewmodels.LandingPageViewModel.loginCommand">
+            <summary>The backing field for <see cref="P:CompOff_App.Viewmodels.LandingPageViewModel.LoginCommand"/>.</summary>
+        </member>
+        <member name="P:CompOff_App.Viewmodels.LandingPageViewModel.LoginCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:CompOff_App.Viewmodels.LandingPageViewModel.Login(System.Object)"/>.</summary>
+        </member>
+        <member name="F:CompOff_App.Viewmodels.Tabs.OverviewPageViewModel.navCommand">
+            <summary>The backing field for <see cref="P:CompOff_App.Viewmodels.Tabs.OverviewPageViewModel.NavCommand"/>.</summary>
+        </member>
+        <member name="P:CompOff_App.Viewmodels.Tabs.OverviewPageViewModel.NavCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:CompOff_App.Viewmodels.Tabs.OverviewPageViewModel.Nav(System.Object)"/>.</summary>
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.RouteAndReplaceStackAsync(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.RouteAndReplaceStackAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.RouteAsync(System.String,System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.RouteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.NavigateBackAsync(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.NavigateBackAsync(System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.GetRootLevelPage">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.Impl.ShellNavigator.GetCurrent">
+            <inheritdoc />
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.RouteAndReplaceStackAsync(System.String,System.Boolean)">
+            <summary>
+            Routes to a named route and clears the history such that the user cannot navigate back
+            </summary>
+            <param name="route">The named route. <see cref="!:NavigationKeys"/></param>
+            <param name="isAnimated">Is navigation animated/></param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.RouteAndReplaceStackAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <summary>
+            Overload of <see cref="!:RouteAndReplaceStackAsync(string)"/> which also passes a query dict/>
+            </summary>
+            <param name="route">The named route. <see cref="!:NavigationKeys"/></param>
+            <param name="queryDict">A query dict object that will be passed to the page/></param>
+            <param name="isAnimated">Is navigation animated/></param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.RouteAsync(System.String,System.Boolean)">
+            <summary>
+            Routes to a named route
+            </summary>
+            <param name="route">The named route. <see cref="!:NavigationKeys"/></param>
+            <param name="isAnimated">Is navigation animated/></param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.RouteAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <summary>
+            Overload of <see cref="!:RouteAsync(string)"/> which also passes a query dict
+            </summary>
+            <param name="route">The named route. <see cref="!:NavigationKeys"/></param>
+            <param name="queryDict">A query dict object that will be passed to the page/></param>
+            <param name="isAnimated">Is navigation animated/></param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.GetRootLevelPage">
+            <summary>
+            Returns the root level page in the downstream path from the current location
+            For example //monkeys/detail will return monkeys.
+            </summary>
+            <returns>A <see cref="!:NavigationKeys"/> for the root level page</returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.NavigateBackAsync(System.Boolean)">
+            <summary>
+            Navigates one step back in the navigation stack
+            </summary>
+            <param name="isAnimated">Boolean indicating whether transition should be animated</param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.NavigateBackAsync(System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Overload of <see cref="M:CompOff_App.Wrappers.INavigationWrapper.NavigateBackAsync(System.Boolean)"/> which also passes a query dict
+            </summary>
+            <param name="isAnimated">Boolean indicating whether transition should be animated</param>
+            <param name="queryDict">A query dict object that will be passed to the page</param>
+            <returns></returns>
+        </member>
+        <member name="M:CompOff_App.Wrappers.INavigationWrapper.GetCurrent">
+            <summary>
+            Returns the current route
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Shared.Common.ObservableRangeCollection`1">
+            <summary> 
+            Represents a dynamic data collection that provides notifications when items get added, removed, or when the whole list is refreshed. 
+            Thanks to the dear James Montemagno we have this convenient class (https://github.com/jamesmontemagno/dotnet-maui-observablerangecollection)
+            </summary> 
+            <typeparam name="T"></typeparam> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.#ctor">
+            <summary> 
+            Initializes a new instance of the System.Collections.ObjectModel.ObservableCollection(Of T) class. 
+            </summary> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary> 
+            Initializes a new instance of the System.Collections.ObjectModel.ObservableCollection(Of T) class that contains elements copied from the specified collection. 
+            </summary> 
+            <param name="collection">collection: The collection from which the elements are copied.</param> 
+            <exception cref="T:System.ArgumentNullException">The collection parameter cannot be null.</exception> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0},System.Collections.Specialized.NotifyCollectionChangedAction,System.Boolean)">
+            <summary> 
+            Adds the elements of the specified collection to the end of the ObservableCollection(Of T). 
+            </summary> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.RemoveRange(System.Collections.Generic.IEnumerable{`0},System.Collections.Specialized.NotifyCollectionChangedAction)">
+            <summary> 
+            Removes the first occurence of each item in the specified collection from ObservableCollection(Of T). NOTE: with notificationMode = Remove, removed items starting index is not set because items are not guaranteed to be consecutive.
+            </summary> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.Replace(`0)">
+            <summary> 
+            Clears the current collection and replaces it with the specified item. 
+            </summary> 
+        </member>
+        <member name="M:Shared.Common.ObservableRangeCollection`1.ReplaceRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary> 
+            Clears the current collection and replaces it with the specified collection. 
+            </summary> 
+        </member>
+        <member name="T:Xamarin.CommunityToolkit.Ports.Exceptions.InvalidHandleEventException">
+            <summary>
+            Represents errors that occur during WeakEventManager.HandleEvent execution.
+            </summary>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Exceptions.InvalidHandleEventException.#ctor(System.String,System.Reflection.TargetParameterCountException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xamarin.CommunityToolkit.Ports.Exceptions.InvalidHandleEventException"/> class.
+            </summary>
+            <param name="message">Message.</param>
+            <param name="targetParameterCountException">Target parameter count exception.</param>
+        </member>
+        <member name="T:Xamarin.CommunityToolkit.Ports.Helpers.SafeFireAndForgetExtensions">
+            <summary>
+            Extension methods for System.Threading.Tasks.Task and System.Threading.Tasks.ValueTask
+            </summary>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.SafeFireAndForgetExtensions.SafeFireAndForget(System.Threading.Tasks.ValueTask,System.Action{System.Exception}@,System.Boolean@)">
+            <summary>
+            Safely execute the ValueTask without waiting for it to complete before moving to the next line of code; commonly known as "Fire And Forget". Inspired by John Thiriet's blog post, "Removing Async Void": https://johnthiriet.com/removing-async-void/.
+            </summary>
+            <param name="task">ValueTask.</param>
+            <param name="onException">If an exception is thrown in the ValueTask, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
+            <param name="continueOnCapturedContext">If set to <c>true</c>, continue on captured context; this will ensure that the Synchronization Context returns to the calling thread. If set to <c>false</c>, continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.SafeFireAndForgetExtensions.SafeFireAndForget``1(System.Threading.Tasks.ValueTask,System.Action{``0}@,System.Boolean@)">
+            <summary>
+            Safely execute the ValueTask without waiting for it to complete before moving to the next line of code; commonly known as "Fire And Forget". Inspired by John Thiriet's blog post, "Removing Async Void": https://johnthiriet.com/removing-async-void/.
+            </summary>
+            <param name="task">ValueTask.</param>
+            <param name="onException">If an exception is thrown in the Task, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
+            <param name="continueOnCapturedContext">If set to <c>true</c>, continue on captured context; this will ensure that the Synchronization Context returns to the calling thread. If set to <c>false</c>, continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
+            <typeparam name="TException">Exception type. If an exception is thrown of a different type, it will not be handled</typeparam>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.SafeFireAndForgetExtensions.SafeFireAndForget(System.Threading.Tasks.Task,System.Action{System.Exception}@,System.Boolean@)">
+            <summary>
+            Safely execute the Task without waiting for it to complete before moving to the next line of code; commonly known as "Fire And Forget". Inspired by John Thiriet's blog post, "Removing Async Void": https://johnthiriet.com/removing-async-void/.
+            </summary>
+            <param name="task">Task.</param>
+            <param name="onException">If an exception is thrown in the Task, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
+            <param name="continueOnCapturedContext">If set to <c>true</c>, continue on captured context; this will ensure that the Synchronization Context returns to the calling thread. If set to <c>false</c>, continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.SafeFireAndForgetExtensions.SafeFireAndForget``1(System.Threading.Tasks.Task,System.Action{``0}@,System.Boolean@)">
+            <summary>
+            Safely execute the Task without waiting for it to complete before moving to the next line of code; commonly known as "Fire And Forget". Inspired by John Thiriet's blog post, "Removing Async Void": https://johnthiriet.com/removing-async-void/.
+            </summary>
+            <param name="task">Task.</param>
+            <param name="onException">If an exception is thrown in the Task, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
+            <param name="continueOnCapturedContext">If set to <c>true</c>, continue on captured context; this will ensure that the Synchronization Context returns to the calling thread. If set to <c>false</c>, continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
+            <typeparam name="TException">Exception type. If an exception is thrown of a different type, it will not be handled</typeparam>
+        </member>
+        <member name="T:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1">
+            <summary>
+            Weak event manager that allows for garbage collection when the EventHandler is still subscribed
+            </summary>
+            <typeparam name="TEventArgs">Event args type.</typeparam>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.AddEventHandler(System.EventHandler{`0},System.String)">
+            <summary>
+            Adds the event handler
+            </summary>
+            <param name="handler">Handler</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.AddEventHandler(System.Action{`0},System.String)">
+            <summary>
+            Adds the event handler
+            </summary>
+            <param name="action">Handler</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.RemoveEventHandler(System.EventHandler{`0},System.String)">
+            <summary>
+            Removes the event handler
+            </summary>
+            <param name="handler">Handler</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.RemoveEventHandler(System.Action{`0},System.String)">
+            <summary>
+            Removes the event handler
+            </summary>
+            <param name="action">Handler</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.HandleEvent(System.Object,`0,System.String)">
+            <summary>
+            Invokes the event EventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="eventArgs">Event arguments</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.HandleEvent(`0,System.String)">
+            <summary>
+            Invokes the event Action
+            </summary>
+            <param name="eventArgs">Event arguments</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.RaiseEvent(System.Object,`0,System.String)">
+            <summary>
+            Invokes the event EventHandler
+            </summary>
+            <param name="sender">Sender</param>
+            <param name="eventArgs">Event arguments</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManager`1.RaiseEvent(`0,System.String)">
+            <summary>
+            Invokes the event Action
+            </summary>
+            <param name="eventArgs">Event arguments</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="T:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManagerExtensions">
+            <summary>
+            Extensions for Xamarin.Forms.WeakEventManager
+            </summary>
+        </member>
+        <member name="M:Xamarin.CommunityToolkit.Ports.Helpers.WeakEventManagerExtensions.RaiseEvent(Microsoft.Maui.WeakEventManager,System.Object,System.Object,System.String)">
+            <summary>
+            Invokes the event EventHandler
+            </summary>
+            <param name="weakEventManager">WeakEventManager</param>
+            <param name="sender">Sender</param>
+            <param name="eventArgs">Event arguments</param>
+            <param name="eventName">Event name</param>
+        </member>
+        <member name="P:Xamarin.CommunityToolkit.Ports.Helpers.XCT.Context">
+            <summary>
+            Gets the <see cref="P:Xamarin.CommunityToolkit.Ports.Helpers.XCT.Context"/>.
+            </summary>
+        </member>
+        <member name="T:Xamarin.CommunityToolkit.Ports.Extensions.VisualElementExtension">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.Maui.Controls.VisualElement"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+    </members>
+</doc>

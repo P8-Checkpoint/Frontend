@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CompOff_App.LandingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:CompOff_App.Components"
+    xmlns:viewModels="clr-namespace:CompOff_App.Viewmodels"
+    x:Name="this"
+    x:DataType="viewModels:LandingPageViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            VerticalOptions="Center">
+
+            <components:IconButton
+                Command="{Binding LoginCommand}"
+                Glyph="&#xea77;"
+                HorizontalOptions="Center"
+                ShowLeadingIcon="False"
+                ShowTrailingIcon="True"
+                Text="Login"
+                TextColor="{StaticResource Primary}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
