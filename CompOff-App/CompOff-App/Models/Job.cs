@@ -24,9 +24,7 @@ namespace CompOff_App.Models
         string _script { get; set; }
         string _datafilepath { get; set; }
         string _resultfilepath { get; set; }
-
         JobStatus _status { get; set; }
-
         DateTime _dateadded { get; set; }
         DateTime _lastactivity  { get; set; }
 
@@ -38,7 +36,6 @@ namespace CompOff_App.Models
             _script = script;
             _datafilepath = datafilepath;
             _status = JobStatus.Created;
-
             _dateadded = DateTime.Now;
         }
 
