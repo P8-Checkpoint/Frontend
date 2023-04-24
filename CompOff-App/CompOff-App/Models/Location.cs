@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CompOff_App.Models
 {
-    class Location
+    public class Location
     {
-        string _name,
-               _imagepath;
-        Adress adress; 
+        string _name { get; set; }
+        string _imagepath { get; set; }
+        Adress adress { get; set; }
 
-        struct Adress
+        public struct Adress
         {
             string street, 
                    number, 

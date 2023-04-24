@@ -14,17 +14,17 @@ namespace CompOff_App.Services.Impl
         }
         //Create a lot of mockup data to test these methods on
 
-        public void getcurrentuser() //TODO: possibly async?
+        public Models.User getcurrentuser() //TODO: possibly async?
         {
             throw new NotImplementedException();
         }
 
-        public void getjobs()
+        public Models.Job getjobs()
         {
             throw new NotImplementedException();
         }
 
-        public void getlocations()
+        public Models.Location getlocations()
         {
             throw new NotImplementedException();
         }
