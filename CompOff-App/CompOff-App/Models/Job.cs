@@ -35,7 +35,7 @@ public Job(string jobname, string description, string script, string datafilepat
         Description = description;
         Script = script;
         DataFilePath = datafilepath;
-        Status = JobStatus.Created;
+        Status = JobStatus.New;
         DateAdded = DateTime.Now;
     }
 
