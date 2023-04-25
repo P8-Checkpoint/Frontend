@@ -8,28 +8,28 @@ namespace CompOff_App.Models
 {
     public class User
     {
-        Guid _userID { get; set; }
-        string _firstname { get; set; }
-        string _lastname { get; set; }
-        string _username { get; set; }
-        bool _isActive { get; set; }
+        public Guid UserID { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Username { get; set; }
+        public bool IsActive { get; set; }
 
         public User(string firstname, string lastname, string username)
         {
-            _userID = Guid.NewGuid();
-            _firstname = firstname;
-            _lastname = lastname;
-            _username = username;
-            _isActive = true; // should be changed when login is implemented
+            UserID = Guid.NewGuid();
+            Firstname = firstname;
+            Lastname = lastname;
+            Username = username;
+            IsActive = true; // should be changed when login is implemented
         }
 
         public string getInitials()
         {
-            return _firstname.Substring(0,1) + _lastname.Substring(0,1);
+            return Firstname.Substring(0,1) + Lastname.Substring(0,1);
         }
-        bool isUserActive()
+        public bool isUserActive()
         {
-            if (_isActive) return true;
+            if (IsActive) return true;
             else return false;
         }
 

@@ -4,22 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompOff_App.Models
+namespace CompOff_App.Models;
+public class Location
 {
-    public class Location
+    public string Name { get; set; }
+    public string Imagepath { get; set; }
+    public Address Address { get; set; }
+
+
+
+    public Location(string name, string imagepath, Address address)
     {
-        string _name { get; set; }
-        string _imagepath { get; set; }
-        Adress adress { get; set; }
-
-        public struct Adress
-        {
-            string street, 
-                   number, 
-                   city, 
-                   zipcode, 
-                   country;
-        }
-
+        Name = name;
+        Imagepath = imagepath;
+        Address = address;
     }
 }

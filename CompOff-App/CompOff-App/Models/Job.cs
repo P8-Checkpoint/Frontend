@@ -18,25 +18,25 @@ namespace CompOff_App.Models
     }
     public class Job
     {
-        Guid _jobID { get; set; }
-        string _jobname { get; set; }
-        string _description { get; set; }
-        string _script { get; set; }
-        string _datafilepath { get; set; }
-        string _resultfilepath { get; set; }
-        JobStatus _status { get; set; }
-        DateTime _dateadded { get; set; }
-        DateTime _lastactivity  { get; set; }
+        public Guid JobID { get; set; }
+        public string Jobname { get; set; }
+        public string Description { get; set; }
+        public string Script { get; set; }
+        public string Datafilepath { get; set; }
+        public string Resultfilepath { get; set; }
+        public JobStatus Status { get; set; }
+        public DateTime Dateadded { get; set; }
+        public DateTime Lastactivity  { get; set; }
 
     public Job(string jobname, string description, string script, string datafilepath)
         {
-            _jobID = Guid.NewGuid();
-            _jobname = jobname;
-            _description = description;
-            _script = script;
-            _datafilepath = datafilepath;
-            _status = JobStatus.Created;
-            _dateadded = DateTime.Now;
+            JobID = Guid.NewGuid();
+            Jobname = jobname;
+            Description = description;
+            Script = script;
+            Datafilepath = datafilepath;
+            Status = JobStatus.Created;
+            Dateadded = DateTime.Now;
         }
 
     }

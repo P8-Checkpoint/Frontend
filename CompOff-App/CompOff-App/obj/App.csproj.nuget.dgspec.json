@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\P8\\Frontend\\CompOff-App\\CompOff-App\\App.csproj": {}
+    "C:\\Users\\Daniel\\Desktop\\8 Semester\\sP\\Frontend\\CompOff-App\\CompOff-App\\App.csproj": {}
   },
   "projects": {
-    "F:\\P8\\Frontend\\CompOff-App\\CompOff-App\\App.csproj": {
+    "C:\\Users\\Daniel\\Desktop\\8 Semester\\sP\\Frontend\\CompOff-App\\CompOff-App\\App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\P8\\Frontend\\CompOff-App\\CompOff-App\\App.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel\\Desktop\\8 Semester\\sP\\Frontend\\CompOff-App\\CompOff-App\\App.csproj",
         "projectName": "App",
-        "projectPath": "F:\\P8\\Frontend\\CompOff-App\\CompOff-App\\App.csproj",
-        "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
-        "outputPath": "F:\\P8\\Frontend\\CompOff-App\\CompOff-App\\obj\\",
+        "projectPath": "C:\\Users\\Daniel\\Desktop\\8 Semester\\sP\\Frontend\\CompOff-App\\CompOff-App\\App.csproj",
+        "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Daniel\\Desktop\\8 Semester\\sP\\Frontend\\CompOff-App\\CompOff-App\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
