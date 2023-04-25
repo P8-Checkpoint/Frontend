@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>CompOff
+		<ApplicationTitle>FlexConnect
         </ApplicationTitle>
 
 		<!-- App Identifier -->
@@ -34,7 +34,7 @@
 	<ItemGroup>
 		<!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#345DA7" />
-        <MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
+        <MauiIcon Include="Resources\AppIcon\appiconfg.svg" Color="#345DA7" ForegroundScale="0.55" />
       
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#345DA7" BaseSize="460.03, 269.98" />

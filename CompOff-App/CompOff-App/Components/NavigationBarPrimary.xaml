@@ -27,13 +27,13 @@
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 BackgroundColor="{StaticResource Gray100}"
-                BorderColor="{StaticResource Gray600}">
+                BorderColor="Transparent">
                 <Image HorizontalOptions="Center">
                     <Image.Source>
                         <FontImageSource
                             FontFamily="MaterialIconsRegular"
                             Glyph="&#xe7fd;"
-                            Size="45"
+                            Size="35"
                             Color="{StaticResource Black}" />
                     </Image.Source>
                 </Image>
@@ -41,21 +41,21 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="1"
-                FontSize="16"
+                FontSize="14"
                 HorizontalOptions="Fill"
                 LineBreakMode="TailTruncation"
                 MaxLines="1"
-                Text="Aloha"
+                Text="Hello"
                 TextColor="White"
                 VerticalOptions="End" />
             <Label
                 Grid.Row="1"
                 Grid.Column="1"
-                FontSize="18"
+                FontSize="16"
                 HorizontalOptions="Fill"
                 LineBreakMode="TailTruncation"
                 MaxLines="1"
-                Text="User Name"
+                Text="{Binding UserName, Source={x:Reference this}}"
                 TextColor="White"
                 VerticalOptions="Center" />
         </Grid>
