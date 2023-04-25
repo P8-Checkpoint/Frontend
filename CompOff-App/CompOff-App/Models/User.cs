@@ -12,7 +12,6 @@ namespace CompOff_App.Models
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Username { get; set; }
-        public bool IsActive { get; set; }
 
         public User(string firstname, string lastname, string username)
         {
@@ -20,20 +19,11 @@ namespace CompOff_App.Models
             Firstname = firstname;
             Lastname = lastname;
             Username = username;
-            IsActive = true; // should be changed when login is implemented
         }
 
         public string getInitials()
         {
             return Firstname.Substring(0,1) + Lastname.Substring(0,1);
         }
-        public bool isUserActive()
-        {
-            if (IsActive) return true;
-            else return false;
-        }
-
-
-
     }
 }
