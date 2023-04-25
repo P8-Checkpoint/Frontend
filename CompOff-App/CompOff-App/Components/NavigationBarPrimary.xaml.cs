@@ -11,23 +11,14 @@ public partial class NavigationBarPrimary : ContentView
     public event EventHandler? Clicked;
 
     /// <summary>
-    /// Backing BindableProperty for the <see cref="LoadCommand"/> property.
-    /// </summary>
-    public static readonly BindableProperty LoadCommandProperty = BindableProperty.Create(nameof(LoadCommand), typeof(ICommand), typeof(NavigationBarPrimary));
-
-    /// <summary>
     /// Backing BindableProperty for the <see cref="Command"/> property.
     /// </summary>
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(IconButton));
-
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(NavigationBarPrimary));
+    
     /// <summary>
-    /// The Command which will be executed when the component is initialized. This is commonly used to signal the <see cref="User"/> should be fetched/>
+    /// Backing BindableProperty for <see cref="UserName"/> property.
     /// </summary>
-    public ICommand LoadCommand
-    {
-        get => (ICommand)GetValue(LoadCommandProperty);
-        set => SetValue(LoadCommandProperty, value);
-    }
+    public static readonly BindableProperty UserNameProperty = BindableProperty.Create(nameof(UserName), typeof(string), typeof(NavigationBarPrimary), "User name");
     /// <summary>
     /// The command which is executed when the Menu is tapped.
     /// </summary>
@@ -35,6 +26,15 @@ public partial class NavigationBarPrimary : ContentView
     {
         get => (ICommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
+    }
+
+    /// <summary>
+    /// The User name to be displayed next to the avatar
+    /// </summary>
+    public string UserName
+    {
+        get => (string)GetValue(UserNameProperty);
+        set => SetValue(UserNameProperty, value);
     }
 
     protected override void OnBindingContextChanged()

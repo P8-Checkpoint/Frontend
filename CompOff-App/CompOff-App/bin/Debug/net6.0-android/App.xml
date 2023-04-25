@@ -129,24 +129,24 @@
             This component provides the primary navigation for top-level pages
             </summary>
         </member>
-        <member name="F:CompOff_App.Components.NavigationBarPrimary.LoadCommandProperty">
-            <summary>
-            Backing BindableProperty for the <see cref="P:CompOff_App.Components.NavigationBarPrimary.LoadCommand"/> property.
-            </summary>
-        </member>
         <member name="F:CompOff_App.Components.NavigationBarPrimary.CommandProperty">
             <summary>
             Backing BindableProperty for the <see cref="P:CompOff_App.Components.NavigationBarPrimary.Command"/> property.
             </summary>
         </member>
-        <member name="P:CompOff_App.Components.NavigationBarPrimary.LoadCommand">
+        <member name="F:CompOff_App.Components.NavigationBarPrimary.UserNameProperty">
             <summary>
-            The Command which will be executed when the component is initialized. This is commonly used to signal the <see cref="!:User"/> should be fetched/>
+            Backing BindableProperty for <see cref="P:CompOff_App.Components.NavigationBarPrimary.UserName"/> property.
             </summary>
         </member>
         <member name="P:CompOff_App.Components.NavigationBarPrimary.Command">
             <summary>
             The command which is executed when the Menu is tapped.
+            </summary>
+        </member>
+        <member name="P:CompOff_App.Components.NavigationBarPrimary.UserName">
+            <summary>
+            The User name to be displayed next to the avatar
             </summary>
         </member>
         <member name="F:CompOff_App.Viewmodels.LandingPageViewModel.loginCommand">

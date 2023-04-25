@@ -4097,8 +4097,3 @@ C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Deb
 C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\stamp\_GenerateJavaStubs.stamp
 C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\stamp\_ResolveLibraryProjectImports.stamp
-C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\resizetizer\r\drawable-hdpi\logo.png
-C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\resizetizer\r\drawable-mdpi\logo.png
-C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\resizetizer\r\drawable-xhdpi\logo.png
-C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\resizetizer\r\drawable-xxhdpi\logo.png
-C:\Users\alexa\Desktop\Haskell\Sessions\Frontend\CompOff-App\CompOff-App\obj\Debug\net6.0-android\resizetizer\r\drawable-xxxhdpi\logo.png
