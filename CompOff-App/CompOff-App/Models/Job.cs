@@ -21,7 +21,7 @@ public enum JobStatus
 public class Job
 {
     public Guid JobID { get; set; }
-    public string Jobname { get; set; }
+    public string JobName { get; set; }
     public string Description { get; set; }
     public string Script { get; set; }
     public string DataFilePath { get; set; }
@@ -30,15 +30,16 @@ public class Job
     public DateTime DateAdded { get; set; }
     public DateTime LastActivity  { get; set; }
 
-    public Job(string jobname, string description, string script, string datafilepath)
+    public Job(string jobName, string description, string script, string dataFilePath)
     {
         JobID = Guid.NewGuid();
-        Jobname = jobname;
+        JobName = jobName;
         Description = description;
         Script = script;
-        DataFilePath = datafilepath;
+        DataFilePath = dataFilePath;
         Status = JobStatus.New;
         DateAdded = DateTime.Now;
+        LastActivity = DateTime.Now;
     }
 
 }

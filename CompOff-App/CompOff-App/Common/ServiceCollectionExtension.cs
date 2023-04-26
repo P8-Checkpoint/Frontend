@@ -1,4 +1,6 @@
 ﻿using CompOff_App.Pages.Tabs;
+using CompOff_App.Services;
+using CompOff_App.Services.Impl;
 using CompOff_App.Viewmodels;
 using CompOff_App.Viewmodels.Tabs;
 using CompOff_App.Wrappers;
@@ -30,6 +32,7 @@ namespace CompOff_App.Common
         }
         public static MauiAppBuilder AddServices(this MauiAppBuilder builder)
         {
+            builder.Services.AddSingleton<IDataService, DataService>();
             return builder;
         }
 

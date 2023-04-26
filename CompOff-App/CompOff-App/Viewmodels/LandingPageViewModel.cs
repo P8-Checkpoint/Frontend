@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CompOff_App.Viewmodels;
 
-public partial class LandingPageViewModel
+public partial class LandingPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator;
 

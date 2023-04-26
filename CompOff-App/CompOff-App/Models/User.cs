@@ -14,6 +14,10 @@ public class User
     public string UserName { get; set; }
     public string Initials { get; set; }
 
+    public User()
+    { 
+    }
+
     public User(string firstName, string lastName, string userName)
     {
         UserID = Guid.NewGuid();

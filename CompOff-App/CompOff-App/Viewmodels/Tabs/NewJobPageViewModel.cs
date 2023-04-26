@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CompOff_App.Viewmodels.Tabs;
 
-public partial class NewJobPageViewModel
+public partial class NewJobPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator; 
 

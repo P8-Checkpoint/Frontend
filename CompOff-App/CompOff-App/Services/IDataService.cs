@@ -9,12 +9,12 @@ using static CompOff_App.Models.Location;
 
 namespace CompOff_App.Services
 {
-    interface IDataService
+    public interface IDataService
     {
         // TODO change return type from VOID to w/e is needed
-        public User GetCurrentUser();
-        public List<Job> GetJobs();
-        public List<Models.Location> GetLocations();
+        public Task<User> GetCurrentUserAsync();
+        public Task<IEnumerable<Job>> GetJobsAsync();
+        public Task<IEnumerable<Models.Location>> GetLocationsAsync();
 
     }
 }
