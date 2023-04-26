@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CompOff_App.Models;
 
+
 public enum JobStatus
 {
     New,
@@ -16,6 +17,7 @@ public enum JobStatus
     Cancelled,
     Done
 }
+
 public class Job
 {
     public Guid JobID { get; set; }
@@ -28,7 +30,7 @@ public class Job
     public DateTime DateAdded { get; set; }
     public DateTime LastActivity  { get; set; }
 
-public Job(string jobname, string description, string script, string datafilepath)
+    public Job(string jobname, string description, string script, string datafilepath)
     {
         JobID = Guid.NewGuid();
         Jobname = jobname;

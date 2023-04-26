@@ -8,15 +8,13 @@ namespace CompOff_App.Models;
 public class Location
 {
     public string Name { get; set; }
-    public string Imagepath { get; set; }
+    public string ImagePath { get; set; }
     public Address Address { get; set; }
 
-
-
-    public Location(string name, string imagepath, Address address)
+    public Location(string name, string imagePath, Address address)
     {
         Name = name;
-        Imagepath = imagepath;
+        ImagePath = imagePath;
         Address = address;
     }
 }

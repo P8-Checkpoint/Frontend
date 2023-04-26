@@ -16,8 +16,8 @@ public partial class JobListPageViewModel
         _navigator = navigator;
     }
 
-    public Task InitializeAsync()
+    public async Task InitializeAsync()
     {
-        return Task.CompletedTask;
+        await Task.CompletedTask;
     }
 }

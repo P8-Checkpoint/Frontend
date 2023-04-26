@@ -8,17 +8,18 @@ namespace CompOff_App.Models
 {
     public struct Address
     {
-        string Street,
-               Number,
-               City,
-               Zipcode,
-               Country;
-        public Address(string street, string number, string city, string zipcode, string country)
+        public string Street;
+        public string Number;
+        public string City;
+        public string ZipCode;
+        public string Country;
+
+        public Address(string street, string number, string city, string zipCode, string country)
         {
             Street = street;
             Number = number;
             City = city;
-            Zipcode = zipcode;
+            ZipCode = zipCode;
             Country = country;
         }
     }

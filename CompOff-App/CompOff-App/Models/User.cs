@@ -4,26 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompOff_App.Models
+namespace CompOff_App.Models;
+
+public class User
 {
-    public class User
+    public Guid UserID { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string UserName { get; set; }
+    public string Initials { get; set; }
+
+    public User(string firstName, string lastName, string userName)
     {
-        public Guid UserID { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Username { get; set; }
+        UserID = Guid.NewGuid();
+        FirstName = firstName;
+        LastName = lastName;
+        UserName = userName;
+        Initials = GetInitials();
+    }
 
-        public User(string firstname, string lastname, string username)
-        {
-            UserID = Guid.NewGuid();
-            Firstname = firstname;
-            Lastname = lastname;
-            Username = username;
-        }
+    public User(Guid userID, string firstName, string lastName, string userName)
+    {
+        UserID = userID;
+        FirstName = firstName;
+        LastName = lastName;
+        UserName = userName;
+        Initials = GetInitials();
+    }
 
-        public string getInitials()
-        {
-            return Firstname.Substring(0,1) + Lastname.Substring(0,1);
-        }
+    private string GetInitials()
+    {
+        return string.Concat(FirstName.AsSpan(0,1), LastName.AsSpan(0,1));
     }
 }

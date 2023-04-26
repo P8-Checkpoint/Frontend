@@ -12,9 +12,9 @@ namespace CompOff_App.Services
     interface IDataService
     {
         // TODO change return type from VOID to w/e is needed
-        public User getcurrentuser();
-        public List<Job> getjobs();
-        public List<Models.Location> getlocations();
+        public User GetCurrentUser();
+        public List<Job> GetJobs();
+        public List<Models.Location> GetLocations();
 
     }
 }
