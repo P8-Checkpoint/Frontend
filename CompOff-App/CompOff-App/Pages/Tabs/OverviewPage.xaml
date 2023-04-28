@@ -4,18 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:CompOff_App.Components"
+    xmlns:sho="http://sharpnado.com"
     xmlns:tabViewModels="clr-namespace:CompOff_App.Viewmodels.Tabs"
+    xmlns:templates="clr-namespace:CompOff_App.Templates"
     Title="OverviewPage"
     x:DataType="tabViewModels:OverviewPageViewModel">
-
-    <VerticalStackLayout>
-        <components:NavigationBarPrimary />
-        <Label
-            HorizontalOptions="Center"
-            Text="OverviewPage"
-            VerticalOptions="Center" />
-        <components:IconButton Command="{Binding NavCommand}" Text="Test" />
-    </VerticalStackLayout>
-
-
+    <ScrollView>
+        <VerticalStackLayout>
+            <components:NavigationBarPrimary />
+            <CollectionView
+                ItemSizingStrategy="MeasureAllItems"
+                ItemTemplate="{templates:JobCardTemplate}"
+                ItemsSource="{Binding Jobs}" />
+            <components:IconButton Command="{Binding NavCommand}" Text="Test" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

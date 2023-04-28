@@ -36,6 +36,7 @@ public partial class OverviewPageViewModel : BaseViewModel
             return;
 
         IsBusy = true;
+        Jobs.Clear();
         await LoadCurrentUser();
         List<Task> tasks = new()
         {

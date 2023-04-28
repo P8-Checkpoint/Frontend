@@ -4,51 +4,70 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="[components ]clr-namespace:CompOff_App.Components"
+    xmlns:converters="clr-namespace:CompOff_App.Converters"
     xmlns:models="clr-namespace:CompOff_App.Models"
     xmlns:viewmodels="clr-namespace:CompOff_App.Viewmodels.Tabs"
     x:DataType="models:Job">
-    <ViewCell>
-        <Border
-            BackgroundColor="{StaticResource Light}"
-            HeightRequest="80"
-            Stroke="{StaticResource Light}"
-            StrokeShape="RoundRectangle 8"
-            StrokeThickness="1">
-            <Grid ColumnDefinitions="5, auto, *, auto" RowDefinitions="*,*">
-                <BoxView
-                    Grid.RowSpan="2"
-                    Grid.Column="0"
-                    Color="HotPink" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="13"
-                    FontSize="16"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="{Binding JobName}"
-                    TextColor="Black" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="13,0,13,13"
-                    FontSize="14"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="{Binding Status, Converter={StaticResource JobStatusToStringConverter}}"
-                    TextColor="Black" />
+    <Border
+        Margin="20,5,20,5"
+        BackgroundColor="{StaticResource Light}"
+        HeightRequest="60"
+        Stroke="{StaticResource Light}"
+        StrokeShape="RoundRectangle 8"
+        StrokeThickness="1">
+        <Grid ColumnDefinitions="10, *, auto, 40" RowDefinitions="auto,*">
+            <BoxView
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Color="{Binding Status, Converter={converters:StatusToColorConverter}}" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="5,10,0,0"
+                FontSize="18"
+                HorizontalOptions="StartAndExpand"
+                HorizontalTextAlignment="Start"
+                LineBreakMode="TailTruncation"
+                Text="{Binding JobName}"
+                TextColor="Black" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="5,0,5,10"
+                FontSize="12"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Text="{Binding Status, Converter={StaticResource JobStatusToStringConverter}}"
+                TextColor="Black"
+                VerticalOptions="End"
+                VerticalTextAlignment="End" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="5,0,5,10"
+                FontSize="12"
+                HorizontalOptions="End"
+                HorizontalTextAlignment="End"
+                Text="{Binding LastActivity, Converter={StaticResource DateToDayAndMonthStringConverter}}"
+                TextColor="Black"
+                VerticalOptions="End" />
 
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Margin="13,0,13,13"
-                    FontSize="14"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Text="{Binding Status, Converter={StaticResource JobStatusToStringConverter}}"
-                    TextColor="Black" />
-            </Grid>
+            <Image
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="3"
+                Margin="0,0,5,0"
+                HorizontalOptions="End"
+                VerticalOptions="Center">
+                <Image.Source>
+                    <FontImageSource
+                        x:Name="LeadingIcon"
+                        FontFamily="MaterialIconsOutlined"
+                        Glyph="&#xe5e1;"
+                        Color="{StaticResource Gray400}" />
+                </Image.Source>
+            </Image>
+        </Grid>
 
-        </Border>
-    </ViewCell>
+    </Border>
 </DataTemplate>

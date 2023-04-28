@@ -10,9 +10,8 @@ namespace CompOff_App.Models;
 
 public enum JobStatus
 {
-    New,
-    InQueue,
     Waiting,
+    InQueue,
     Running,
     Cancelled,
     Done
@@ -37,7 +36,7 @@ public class Job
         Description = description;
         Script = script;
         DataFilePath = dataFilePath;
-        Status = JobStatus.New;
+        Status = JobStatus.Waiting;
         DateAdded = DateTime.Now;
         LastActivity = DateTime.Now;
     }
