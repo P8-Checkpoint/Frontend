@@ -12,10 +12,29 @@
     <ScrollView>
         <VerticalStackLayout>
             <components:NavigationBarPrimary />
+            <Grid Margin="20,20,20,5" ColumnDefinitions="*,Auto">
+                <Label
+                    Grid.Column="0"
+                    FontSize="26"
+                    Text="Latest Jobs"
+                    TextColor="Black"
+                    VerticalOptions="End" />
+                <components:IconButton
+                    Grid.Column="1"
+                    Command="{Binding ShowAllJobsCommand}"
+                    Text="Show all"
+                    VerticalOptions="End" />
+            </Grid>
             <CollectionView
                 ItemSizingStrategy="MeasureAllItems"
                 ItemTemplate="{templates:JobCardTemplate}"
                 ItemsSource="{Binding Jobs}" />
+
+            <CollectionView
+                ItemSizingStrategy="MeasureAllItems"
+                ItemTemplate="{templates:JobCardTemplate}"
+                ItemsSource="{Binding Locations}" />
+
             <components:IconButton Command="{Binding NavCommand}" Text="Test" />
         </VerticalStackLayout>
     </ScrollView>

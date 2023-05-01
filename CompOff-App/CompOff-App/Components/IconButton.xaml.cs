@@ -35,7 +35,7 @@ public partial class IconButton : ContentView
     /// <summary>
     /// Backing BindableProperty for the <see cref="BorderRadius"/> property.
     /// </summary>
-    public static readonly BindableProperty BorderRadiusProperty = BindableProperty.Create(nameof(BorderRadius), typeof(int), typeof(IconButton), 10, propertyChanged: OnColorPropertyChanged);
+    public static readonly BindableProperty BorderRadiusProperty = BindableProperty.Create(nameof(BorderRadius), typeof(int), typeof(IconButton), 12, propertyChanged: OnColorPropertyChanged);
 
     /// <summary>
     /// Backing BindableProperty for the <see cref="IconSize"/> property.
@@ -58,11 +58,6 @@ public partial class IconButton : ContentView
     public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(IconButton));
 
     /// <summary>
-    /// Backing BindableProperty for the <see cref="ShowLeadingIcon"/> property.
-    /// </summary>
-    public static readonly BindableProperty ShowLeadingIconProperty = BindableProperty.Create(nameof(ShowLeadingIcon), typeof(bool), typeof(IconButton), true);
-
-    /// <summary>
     /// Backing BindableProperty for the <see cref="ShowTrailingIcon"/> property.
     /// </summary>
     public static readonly BindableProperty ShowTrailingIconProperty = BindableProperty.Create(nameof(ShowTrailingIcon), typeof(bool), typeof(IconButton), false);
@@ -74,15 +69,6 @@ public partial class IconButton : ContentView
     {
         get => (string)GetValue(TextProperty);
         set => SetValue(TextProperty, value);
-    }
-
-    /// <summary>
-    /// Whether the first icon should be shown
-    /// </summary>
-    public bool ShowLeadingIcon
-    {
-        get => (bool)GetValue(ShowLeadingIconProperty);
-        set => SetValue(ShowLeadingIconProperty, value);
     }
 
     /// <summary>
@@ -179,11 +165,6 @@ public partial class IconButton : ContentView
     {
         InitializeComponent();
 
-        if (!ShowLeadingIcon)
-        {
-            Label.Padding = new Thickness(0);
-        }
-
         OnColorChange();
         OnTextChange();
 
@@ -216,7 +197,6 @@ public partial class IconButton : ContentView
         };
 
         Label.TextColor = TextColor;
-        LeadingIcon.Color = IconColor;
         TrailingIcon.Color = IconColor;
 
         BatchCommit();
@@ -232,18 +212,12 @@ public partial class IconButton : ContentView
             var thickness = new Thickness(0);
             GestureContainer.Padding = new Thickness(8);
             Trailing.Padding = thickness;
-            Leading.Padding = thickness;
             Label.IsVisible = false;
         }
         else
         {
-            GestureContainer.Padding = new Thickness(12, 8);
+            GestureContainer.Padding = new Thickness(7, 4);
             Label.IsVisible = true;
-
-            if (ShowLeadingIcon)
-            {
-                Leading.Margin = new Thickness(0, 0, 6, 0);
-            }
 
             if (ShowTrailingIcon)
             {

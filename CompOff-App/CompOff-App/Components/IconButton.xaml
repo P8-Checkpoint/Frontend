@@ -9,31 +9,22 @@
     <VerticalStackLayout>
         <Border
             x:Name="Border"
+            Padding="0"
             HorizontalOptions="Center"
             VerticalOptions="Center">
 
             <HorizontalStackLayout
                 x:Name="GestureContainer"
+                Padding="7,4,7,4"
                 effects:TouchEffect.NormalBackgroundColor="Transparent"
                 effects:TouchEffect.PressedBackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
                 Dark={StaticResource Gray600}}"
                 HorizontalOptions="Center">
-                <StackLayout x:Name="Leading" IsVisible="{Binding ShowLeadingIcon, Source={x:Reference this}}">
-                    <Image HorizontalOptions="Center">
-                        <Image.Source>
-                            <FontImageSource
-                                x:Name="LeadingIcon"
-                                FontFamily="MaterialIconsOutlined"
-                                Glyph="{Binding Glyph, Source={x:Reference this}}"
-                                Size="{Binding IconSize, Source={x:Reference this}}" />
-                        </Image.Source>
-                    </Image>
-                </StackLayout>
-
                 <Label
                     x:Name="Label"
-                    Padding="0"
-                    FontSize="14"
+                    Padding="5,0,5,0"
+                    FontSize="16"
+                    HorizontalOptions="StartAndExpand"
                     Text="{Binding Text, Source={x:Reference this}}"
                     VerticalOptions="Center" />
 

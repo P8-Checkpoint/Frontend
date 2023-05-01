@@ -18,7 +18,6 @@
                 Command="{Binding LoginCommand}"
                 Glyph="&#xea77;"
                 HorizontalOptions="Center"
-                ShowLeadingIcon="False"
                 ShowTrailingIcon="True"
                 Text="Login"
                 TextColor="{StaticResource Primary}" />

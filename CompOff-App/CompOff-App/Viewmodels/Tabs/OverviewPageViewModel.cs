@@ -73,4 +73,11 @@ public partial class OverviewPageViewModel : BaseViewModel
     {
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage, false);
     }
+
+    [RelayCommand]
+    private async Task ShowAllJobs(object arg)
+    {
+        await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
+    }
+
 }
