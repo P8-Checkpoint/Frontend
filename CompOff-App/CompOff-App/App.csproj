@@ -50,10 +50,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\logo.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\Fonts\GillSans-Bold.TTF" />
 	  <None Remove="Resources\Fonts\GillSans-Regular.ttf" />
@@ -79,6 +75,9 @@
 	  <Compile Update="Pages\Tabs\NewJobPage.xaml.cs">
 	    <DependentUpon>NewJobPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Templates\LocationCardTemplate.xaml.cs">
+	    <DependentUpon>LocationCardTemplate.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -95,6 +94,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\Converters.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Templates\LocationCardTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Templates\JobCardTemplate.xaml">

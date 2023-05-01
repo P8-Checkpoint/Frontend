@@ -40,8 +40,8 @@ public class DataService : IDataService
     private readonly User _user = new("John", "staal", "staalanden");
     private readonly List<Models.Location> _locations = new()
     {
-        new("Trekanten", "C/images/logoaalborg.png", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
-        new("Open Space", "C/images/logoaarhus.png", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark"))
+        new("Trekanten Makerspace", "C/images/logoaalborg.png", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
+        new("Open Space Aarhus", "C/images/logoaarhus.png", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark"))
     };
 
     public DataService()
