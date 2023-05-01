@@ -41,4 +41,7 @@ public class Job
         LastActivity = DateTime.Now;
     }
 
+    public Job()
+    {
+    }
 }
