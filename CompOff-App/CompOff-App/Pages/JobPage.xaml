@@ -5,44 +5,139 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:CompOff_App.Components"
     xmlns:models="clr-namespace:CompOff_App.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:CompOff_App.Viewmodels"
+    x:Name="this"
     Title="JobPage"
     x:DataType="viewModels:JobPageViewModel"
     Shell.NavBarIsVisible="False"
     Shell.PresentationMode="Animated"
     Shell.TabBarIsVisible="False">
-    <VerticalStackLayout>
-        <components:NavigationBarSecondary Title="Job Information" Command="{Binding BackCommand}" />
-        <Label
-            Padding="20"
-            FontAttributes="Bold"
-            FontSize="20"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            LineBreakMode="TailTruncation"
-            Text="{Binding CurrentJob.JobName}"
-            TextColor="{StaticResource Primary}" />
-        <Label
-            Padding="20,15"
-            FontSize="18"
-            Text="Status"
-            TextColor="Black" />
-        <HorizontalStackLayout>
-            <Image>
-                <Image.Source>
-                    <FontImageSource
-                        x:Name="TrailingIcon"
-                        FontFamily="MaterialIconsOutlined"
-                        Glyph="{Binding CurrentJob.Status, Converter={StaticResource StatusToGlyphConverter}}"
-                        Size="16"
-                        Color="{Binding CurrentJob.Status, Converter={StaticResource StatusToColorConverter}}" />
-                </Image.Source>
-            </Image>
-            <Label Text="{Binding CurrentJob.Status, Converter={StaticResource JobStatusToStringConverter}}" />
-        </HorizontalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <!--  Navigation bar  -->
+            <components:NavigationBarSecondary
+                Title="Job Information"
+                Command="{Binding BackCommand}"
+                UpdateCommand="{Binding ReloadCommand}" />
 
-        <BoxView Margin="20" StyleClass="Separator" />
+            <!--  Title  -->
+            <Label
+                Padding="20"
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="TailTruncation"
+                Text="{Binding CurrentJob.JobName}"
+                TextColor="{StaticResource Primary}" />
+
+            <!--  Status  -->
+            <Label
+                Padding="20,0,0,15"
+                FontSize="22"
+                Text="Status"
+                TextColor="Black" />
+            <HorizontalStackLayout Padding="20,0">
+                <Image>
+                    <Image.Source>
+                        <FontImageSource
+                            x:Name="TrailingIcon"
+                            FontFamily="MaterialIconsOutlined"
+                            Glyph="{Binding CurrentJob.Status, Converter={StaticResource StatusToGlyphConverter}}"
+                            Size="20"
+                            Color="{Binding CurrentJob.Status, Converter={StaticResource StatusToColorConverter}}" />
+                    </Image.Source>
+                </Image>
+                <Label
+                    Margin="10,0"
+                    FontSize="18"
+                    Text="{Binding CurrentJob.Status, Converter={StaticResource JobStatusToStringConverter}}"
+                    TextColor="Black" />
+
+                <components:IconButton
+                    Command="{Binding CancelCommand}"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding ShowCancelButton}"
+                    Text="Cancel" />
+
+                <components:IconButton
+                    Command="{Binding CancelCommand}"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding ShowResultButton}"
+                    Text="Cancel" />
+            </HorizontalStackLayout>
+
+            <BoxView Margin="20" StyleClass="Separator" />
+
+            <!--  Description  -->
+            <Label
+                Padding="20,0,0,15"
+                FontSize="22"
+                Text="Description"
+                TextColor="Black" />
+
+            <Editor
+                x:Name="DescriptionEntry"
+                Margin="20,0,0,15"
+                CursorPosition="{Binding CurrentJob.Description.Length}"
+                FontSize="16"
+                HorizontalOptions="Start"
+                IsReadOnly="{Binding NotEditingDescription}"
+                MinimumHeightRequest="20"
+                Text="{Binding CurrentJob.Description}"
+                TextColor="{StaticResource Gray500}" />
 
 
-    </VerticalStackLayout>
+            <components:IconButton
+                Margin="20,0,0,5"
+                Command="{Binding EditDescriptionCommand}"
+                Glyph="&#xe3c9;"
+                HorizontalOptions="Start"
+                IsVisible="{Binding NotEditingDescription}"
+                ShowTrailingIcon="True"
+                Text="Edit" />
+            <HorizontalStackLayout Margin="20,0,20,5" IsVisible="{Binding NotEditingDescription, Converter={toolkit:InvertedBoolConverter}}">
+                <components:IconButton
+                    Command="{Binding SubmitDescriptionChangeCommand}"
+                    CommandParameter="{Binding Source={x:Reference DescriptionEntry}, Path=Text}"
+                    HorizontalOptions="Start"
+                    Text="Apply" />
+                <components:IconButton
+                    Command="{Binding CancelDescriptionEditCommand}"
+                    HorizontalOptions="End"
+                    Text="Cancel" />
+            </HorizontalStackLayout>
+
+            <BoxView Margin="20" StyleClass="Separator" />
+
+            <!--  Date Added  -->
+            <Label
+                Padding="20,0,0,15"
+                FontSize="22"
+                Text="Date Added"
+                TextColor="Black" />
+
+            <Label
+                Margin="10,0"
+                FontSize="18"
+                Text="{Binding CurrentJob.DateAdded, Converter={StaticResource DateToFullDatetimeStringConverter}}"
+                TextColor="Black" />
+
+            <BoxView Margin="20" StyleClass="Separator" />
+
+            <!--  Last Activity  -->
+            <Label
+                Padding="20,0,0,15"
+                FontSize="22"
+                Text="Last Activity"
+                TextColor="Black" />
+
+            <Label
+                Margin="10,0"
+                FontSize="18"
+                Text="{Binding CurrentJob.LastActivity, Converter={StaticResource DateToFullDatetimeStringConverter}}"
+                TextColor="Black" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

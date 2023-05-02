@@ -15,12 +15,12 @@ namespace CompOff_App.Converters
             JobStatus status = (JobStatus)value;
             return status switch
             {
-                JobStatus.Waiting => "&#xef64;",
-                JobStatus.InQueue => "&#xe8b5;",
-                JobStatus.Running => "&#xef6f;",
-                JobStatus.Cancelled => "&#xe5c9;",
-                JobStatus.Done => "&#xe86c;",
-                _ => "&#xef64;",
+                JobStatus.Waiting => "\uef64",
+                JobStatus.InQueue => "\ue8b5",
+                JobStatus.Running => "\uef6f",
+                JobStatus.Cancelled => "\ue5c9",
+                JobStatus.Done => "\ue86c",
+                _ => "\uef64",
             };
         }
 

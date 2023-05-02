@@ -15,6 +15,6 @@ namespace CompOff_App.Services
         public Task<User> GetCurrentUserAsync();
         public Task<IEnumerable<Job>> GetJobsAsync();
         public Task<IEnumerable<Models.Location>> GetLocationsAsync();
-
+        public Task<Job> GetJobByIdAsync(Guid id);
     }
 }

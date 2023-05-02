@@ -15,6 +15,8 @@ namespace CompOff_App.Viewmodels
     {
         private readonly INavigationWrapper _navigator;
         private readonly IDataService _dataService;
+        
+        private string _description;
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -26,9 +28,18 @@ namespace CompOff_App.Viewmodels
             }
         }
 
-
         [ObservableProperty]
         public Job currentJob = new();
+
+        [ObservableProperty]
+        public bool notEditingDescription = true;
+
+        [ObservableProperty]
+        public bool showCancelButton = false;
+
+        [ObservableProperty]
+        public bool showResultButton = false;
+
 
         public JobPageViewModel(INavigationWrapper navigator, IDataService dataService)
         {
@@ -36,24 +47,72 @@ namespace CompOff_App.Viewmodels
             _navigator = navigator;
         }
 
-
-
         public async Task InitializeAsync()
         {
             if (IsBusy)
                 return;
-
             IsBusy = true;
-
-
-
+            await Update();
             IsBusy = false;
+        }
+
+        private async Task Update()
+        {
+            var job = await _dataService.GetJobByIdAsync(CurrentJob.JobID);
+            CurrentJob = job;
+
+            _description = CurrentJob.Description;
+            OnPropertyChanged(nameof(CurrentJob));
+
+            ShowCancelButton = CurrentJob.Status is JobStatus.Waiting or JobStatus.InQueue or JobStatus.Running;
+            ShowResultButton = CurrentJob.Status is JobStatus.Done;
+            Thread.Sleep(50);
+        }
+
+        [RelayCommand]
+        public async Task Reload(object arg)
+        {
+            await Update();
+        }
+
+        [RelayCommand]
+        public Task Cancel(object arg)
+        {
+            CurrentJob.Status = JobStatus.Cancelled;
+            OnPropertyChanged(nameof(CurrentJob));
+            return Task.CompletedTask;
         }
 
         [RelayCommand]
         public async Task Back(object arg)
         {
             await _navigator.NavigateBackAsync(isAnimated: true);
+        }
+
+        [RelayCommand]
+        public Task EditDescription(object arg)
+        {
+            NotEditingDescription = false;
+            return Task.CompletedTask;
+        }
+
+        [RelayCommand]
+        public Task SubmitDescriptionChange(object arg)
+        {
+            NotEditingDescription = true;
+            _description = (string)arg;
+            CurrentJob.Description = _description;
+            OnPropertyChanged(nameof(CurrentJob));
+            return Task.CompletedTask;
+        }
+
+        [RelayCommand]
+        public async Task CancelDescriptionEdit(object arg)
+        {
+            NotEditingDescription = true;
+            CurrentJob.Description = _description;
+            OnPropertyChanged(nameof(CurrentJob));
+            await Update();
         }
     }
 }

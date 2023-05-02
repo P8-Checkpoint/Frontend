@@ -17,22 +17,22 @@
         ColumnDefinitions="*, auto, *"
         VerticalOptions="Center">
         <Border
-            Stroke="transparent"
-            x:Name="GestureContainer"
+            x:Name="GestureContainer1"
             Grid.Column="0"
             Padding="5"
             effects:TouchEffect.Command="{Binding Command, Source={x:Reference this}}"
             effects:TouchEffect.NormalBackgroundColor="Transparent"
             effects:TouchEffect.PressedBackgroundColor="{StaticResource Gray100}"
             HorizontalOptions="Start"
+            Stroke="transparent"
             StrokeShape="RoundRectangle 50"
-            VerticalOptions="Center">
+            VerticalOptions="End">
             <Image>
                 <Image.Source>
                     <FontImageSource
                         FontFamily="MaterialIconsRegular"
                         Glyph="&#xe5c4;"
-                        Size="30"
+                        Size="25"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>
@@ -47,5 +47,28 @@
             TextColor="{StaticResource White}"
             VerticalOptions="Center"
             VerticalTextAlignment="Center" />
+
+        <Border
+            x:Name="GestureContainer2"
+            Grid.Column="2"
+            Padding="5"
+            effects:TouchEffect.Command="{Binding UpdateCommand, Source={x:Reference this}}"
+            effects:TouchEffect.NormalBackgroundColor="Transparent"
+            effects:TouchEffect.PressedBackgroundColor="{StaticResource Gray100}"
+            HorizontalOptions="End"
+            Stroke="transparent"
+            StrokeShape="RoundRectangle 50"
+            VerticalOptions="End">
+            <Image>
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="MaterialIconsRegular"
+                        Glyph="&#xe923;"
+                        Size="25"
+                        Color="{StaticResource White}" />
+                </Image.Source>
+            </Image>
+
+        </Border>
     </Grid>
 </ContentView>

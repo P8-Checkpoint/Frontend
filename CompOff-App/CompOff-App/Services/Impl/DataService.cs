@@ -67,4 +67,10 @@ public class DataService : IDataService
         await Task.CompletedTask;
         return _locations;
     }
+
+    public async Task<Job> GetJobByIdAsync(Guid id)
+    {
+        await Task.CompletedTask;
+        return _jobs.Where(x => x.JobID == id).FirstOrDefault();
+    }
 }
