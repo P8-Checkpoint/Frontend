@@ -3,27 +3,24 @@ using System.Windows.Input;
 
 namespace CompOff_App.Components;
 
-
-public partial class NavigationBarPrimary : ContentView
+public partial class NavigationBarSecondary : ContentView
 {
     public event EventHandler? Clicked;
 
-
-    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(NavigationBarPrimary));
+    public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(NavigationBarSecondary));
     
+    public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(NavigationBarSecondary), string.Empty);
 
-    public static readonly BindableProperty UserNameProperty = BindableProperty.Create(nameof(UserName), typeof(string), typeof(NavigationBarPrimary), "User name");
 
     public ICommand Command
     {
         get => (ICommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
     }
-
-    public string UserName
+    public string Title
     {
-        get => (string)GetValue(UserNameProperty);
-        set => SetValue(UserNameProperty, value);
+        get => (string)GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
     }
 
     protected override void OnBindingContextChanged()
@@ -31,11 +28,11 @@ public partial class NavigationBarPrimary : ContentView
         base.OnBindingContextChanged();
     }
 
-    public NavigationBarPrimary()
+    public NavigationBarSecondary()
     {
         InitializeComponent();
 
-        MenuHandle.GestureRecognizers.Add(new TapGestureRecognizer
+        GestureContainer.GestureRecognizers.Add(new TapGestureRecognizer
         {
             Command = new Command(() =>
             {

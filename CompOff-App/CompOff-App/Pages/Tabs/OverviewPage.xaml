@@ -40,7 +40,7 @@
                         <DataTemplate x:DataType="models:Job">
                             <templates:JobCardTemplate
                                 Margin="0,2"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type tabViewModels:OverviewPageViewModel}}, Path=NavCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type tabViewModels:OverviewPageViewModel}}, Path=JobClickedCommand}"
                                 Item="{Binding .}" />
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
@@ -54,6 +54,7 @@
                 ItemSizingStrategy="MeasureAllItems"
                 ItemTemplate="{templates:JobCardTemplate}"
                 ItemsSource="{Binding Locations}" />-->
+                <BoxView StyleClass="Separator" />
 
                 <components:IconButton Command="{Binding NavCommand}" Text="Test" />
             </VerticalStackLayout>

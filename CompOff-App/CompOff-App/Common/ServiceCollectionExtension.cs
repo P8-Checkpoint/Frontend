@@ -1,4 +1,5 @@
-﻿using CompOff_App.Pages.Tabs;
+﻿using CompOff_App.Pages;
+using CompOff_App.Pages.Tabs;
 using CompOff_App.Services;
 using CompOff_App.Services.Impl;
 using CompOff_App.Viewmodels;
@@ -18,6 +19,7 @@ namespace CompOff_App.Common
         public static MauiAppBuilder AddPages(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LandingPage>();
+            builder.Services.AddTransient<JobPage>();
 
             //Tabs
             builder.Services.AddTransient<OverviewPage>();
@@ -39,9 +41,10 @@ namespace CompOff_App.Common
         public static MauiAppBuilder AddViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LandingPageViewModel>();
+            builder.Services.AddTransient<JobPageViewModel>();
 
             //Tabs
-            builder.Services.AddTransient<OverviewPageViewModel>();
+            builder.Services.AddSingleton<OverviewPageViewModel>();
             builder.Services.AddSingleton<JobListPageViewModel>();
             builder.Services.AddSingleton<NewJobPageViewModel>();
             return builder;

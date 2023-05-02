@@ -73,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\NavigationBarSecondary.xaml.cs">
+	    <DependentUpon>NavigationBarSecondary.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="LandingPage.xaml.cs">
 	    <DependentUpon>LandingPage.xaml</DependentUpon>
 	  </Compile>
@@ -85,10 +88,13 @@
 	  <MauiXaml Update="Components\IconButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Components\NavigationBarSecondary.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Components\NavigationBarPrimary.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Components\NavigationBarSecondary.xaml">
+	  <MauiXaml Update="Pages\JobPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Tabs\NewJobPage.xaml">

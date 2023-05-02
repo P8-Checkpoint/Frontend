@@ -7,4 +7,6 @@
 
     <converters:DateToDayAndMonthStringConverter x:Key="DateToDayAndMonthStringConverter" />
     <converters:JobStatusToStringConverter x:Key="JobStatusToStringConverter" />
+    <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
+    <converters:StatusToGlyphConverter x:Key="StatusToGlyphConverter" />
 </ResourceDictionary>

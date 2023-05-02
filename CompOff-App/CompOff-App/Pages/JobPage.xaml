@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CompOff_App.Pages.JobPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:CompOff_App.Components"
+    xmlns:models="clr-namespace:CompOff_App.Models"
+    xmlns:viewModels="clr-namespace:CompOff_App.Viewmodels"
+    Title="JobPage"
+    x:DataType="viewModels:JobPageViewModel"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="Animated"
+    Shell.TabBarIsVisible="False">
+    <VerticalStackLayout>
+        <components:NavigationBarSecondary Title="Job Information" Command="{Binding BackCommand}" />
+        <Label
+            Padding="20"
+            FontAttributes="Bold"
+            FontSize="20"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            LineBreakMode="TailTruncation"
+            Text="{Binding CurrentJob.JobName}"
+            TextColor="{StaticResource Primary}" />
+        <Label
+            Padding="20,15"
+            FontSize="18"
+            Text="Status"
+            TextColor="Black" />
+        <HorizontalStackLayout>
+            <Image>
+                <Image.Source>
+                    <FontImageSource
+                        x:Name="TrailingIcon"
+                        FontFamily="MaterialIconsOutlined"
+                        Glyph="{Binding CurrentJob.Status, Converter={StaticResource StatusToGlyphConverter}}"
+                        Size="16"
+                        Color="{Binding CurrentJob.Status, Converter={StaticResource StatusToColorConverter}}" />
+                </Image.Source>
+            </Image>
+            <Label Text="{Binding CurrentJob.Status, Converter={StaticResource JobStatusToStringConverter}}" />
+        </HorizontalStackLayout>
+
+        <BoxView Margin="20" StyleClass="Separator" />
+
+
+    </VerticalStackLayout>
+</ContentPage>
