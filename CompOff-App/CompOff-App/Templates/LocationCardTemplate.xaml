@@ -17,7 +17,7 @@
         StrokeThickness="1"
         WidthRequest="180">
         <Grid ColumnDefinitions="*" RowDefinitions="*,auto">
-            <Image Grid.Row="0" Source="Resources/Images/Sample.svg" />
+            <Image Grid.Row="0" Source="{Binding ImagePath}" />
             <Label
                 Grid.Row="1"
                 Margin="0,5,0,0"
@@ -28,8 +28,6 @@
                 LineBreakMode="WordWrap"
                 Text="{Binding Name}"
                 TextColor="{StaticResource Primary}" />
-
         </Grid>
-
     </Border>
 </DataTemplate>
