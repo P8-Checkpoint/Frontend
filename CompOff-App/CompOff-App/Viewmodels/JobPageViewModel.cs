@@ -66,7 +66,8 @@ namespace CompOff_App.Viewmodels
 
             ShowCancelButton = CurrentJob.Status is JobStatus.Waiting or JobStatus.InQueue or JobStatus.Running;
             ShowResultButton = CurrentJob.Status is JobStatus.Done;
-            Thread.Sleep(50);
+            OnPropertyChanged(nameof(ShowCancelButton));
+            OnPropertyChanged(nameof(ShowResultButton));
         }
 
         [RelayCommand]
@@ -76,11 +77,10 @@ namespace CompOff_App.Viewmodels
         }
 
         [RelayCommand]
-        public Task Cancel(object arg)
+        public async Task Cancel(object arg)
         {
-            CurrentJob.Status = JobStatus.Cancelled;
-            OnPropertyChanged(nameof(CurrentJob));
-            return Task.CompletedTask;
+            await _dataService.UpdateJobAsync(CurrentJob.JobID, CurrentJob.JobName, JobStatus.Cancelled, CurrentJob.Description);
+            await Update();
         }
 
         [RelayCommand]
@@ -97,13 +97,12 @@ namespace CompOff_App.Viewmodels
         }
 
         [RelayCommand]
-        public Task SubmitDescriptionChange(object arg)
+        public async Task SubmitDescriptionChange(object arg)
         {
             NotEditingDescription = true;
             _description = (string)arg;
-            CurrentJob.Description = _description;
-            OnPropertyChanged(nameof(CurrentJob));
-            return Task.CompletedTask;
+            await _dataService.UpdateJobAsync(CurrentJob.JobID, CurrentJob.JobName, CurrentJob.Status, _description);
+            await Update();
         }
 
         [RelayCommand]
