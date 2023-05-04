@@ -11,7 +11,6 @@ namespace CompOff_App.Services
 {
     public interface IDataService
     {
-        // TODO change return type from VOID to w/e is needed
         public Task<User> GetCurrentUserAsync();
         public Task UpdateJobAsync(Guid id, string name, JobStatus status, string description);
         public Task<IEnumerable<Job>> GetJobsAsync();

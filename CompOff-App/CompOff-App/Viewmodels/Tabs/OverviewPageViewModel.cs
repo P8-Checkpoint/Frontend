@@ -38,6 +38,7 @@ public partial class OverviewPageViewModel : BaseViewModel
 
         IsBusy = true;
         Jobs.Clear();
+        Locations.Clear();
         await LoadCurrentUser();
         List<Task> tasks = new()
         {
@@ -61,7 +62,7 @@ public partial class OverviewPageViewModel : BaseViewModel
     {
         var locationList = await _dataService.GetLocationsAsync();
         Locations.AddRange(locationList);
-
+        Locations.AddRange(locationList); //This is for test purposes, dont keep this 2nd statement. Lol
     }
 
     private async Task LoadCurrentUser()
