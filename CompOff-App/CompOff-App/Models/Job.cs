@@ -41,4 +41,21 @@ public class Job
         LastActivity = DateTime.Now;
     }
 
+    public Job(Job job)
+    {
+        JobID = job.JobID;
+        JobName = job.JobName;
+        Description = job.Description;
+        Script = job.Script;
+        DataFilePath = job.DataFilePath;
+        ResultFilePath = job.ResultFilePath;
+        Status = job.Status;
+        DateAdded = job.DateAdded;
+        LastActivity = job.LastActivity;
+
+    }
+
+    public Job()
+    {
+    }
 }

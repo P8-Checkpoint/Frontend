@@ -9,7 +9,7 @@ namespace CompOff_App.Services.Impl;
 
 public class DataService : IDataService
 {
-    private readonly List<Job> _jobs = new()
+    private List<Job> _jobs = new()
     {
         new("Home Video Render", "video rendering for new home video", "homevideo.mp4", "C:/User/homevideos")
         {
@@ -37,8 +37,8 @@ public class DataService : IDataService
             LastActivity = new(2023, 4, 26)
         }
     };
-    private readonly User _user = new("John", "staal", "staalanden");
-    private readonly List<Models.Location> _locations = new()
+    private User _user = new("John", "staal", "staalanden");
+    private List<Models.Location> _locations = new()
     {
         new("Trekanten Makerspace", "Resources/Images/Sample.svg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
         new("Open Space Aarhus", "Resources/Images/Sample.svg", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark"))
@@ -59,7 +59,7 @@ public class DataService : IDataService
     public async Task<IEnumerable<Job>> GetJobsAsync()
     {
         await Task.CompletedTask;
-        return _jobs;
+        return _jobs.Select(x => new Job(x)) ;
     }
 
     public async Task<IEnumerable<Models.Location>> GetLocationsAsync()
@@ -68,4 +68,21 @@ public class DataService : IDataService
         return _locations;
     }
 
+    public async Task<Job> GetJobByIdAsync(Guid id)
+    {
+        await Task.CompletedTask;
+        return new Job (_jobs.Where(x => x.JobID == id).FirstOrDefault());
+    }
+
+    public async Task UpdateJobAsync(Guid id, string name, JobStatus status, string description)
+    {
+        var job = _jobs.FirstOrDefault(x => x.JobID == id);
+        if (job != null)
+        {
+            job.JobName = name;
+            job.Status = status;
+            job.Description = description;
+        }
+        await Task.CompletedTask;
+    }
 }

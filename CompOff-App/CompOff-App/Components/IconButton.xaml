@@ -17,8 +17,7 @@
                 x:Name="GestureContainer"
                 Padding="7,4,7,4"
                 effects:TouchEffect.NormalBackgroundColor="Transparent"
-                effects:TouchEffect.PressedBackgroundColor="{AppThemeBinding Light={StaticResource Gray100},
-                Dark={StaticResource Gray600}}"
+                effects:TouchEffect.PressedBackgroundColor="{StaticResource Gray100}"
                 HorizontalOptions="Center">
                 <Label
                     x:Name="Label"

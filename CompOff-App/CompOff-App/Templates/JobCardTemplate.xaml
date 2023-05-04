@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<DataTemplate
+<ContentView
     x:Class="CompOff_App.Templates.JobCardTemplate"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="[components ]clr-namespace:CompOff_App.Components"
     xmlns:converters="clr-namespace:CompOff_App.Converters"
+    xmlns:effects="clr-namespace:Xamarin.CommunityToolkit.Ports.Effects"
     xmlns:models="clr-namespace:CompOff_App.Models"
     xmlns:viewmodels="clr-namespace:CompOff_App.Viewmodels.Tabs"
-    x:DataType="models:Job">
+    x:Name="this">
     <Border
-        Margin="20,5,20,5"
         BackgroundColor="{StaticResource Light}"
         HeightRequest="60"
         Stroke="{StaticResource Light}"
         StrokeShape="RoundRectangle 8"
         StrokeThickness="1">
-        <Grid ColumnDefinitions="10, *, auto, 40" RowDefinitions="auto,*">
+        <Grid
+            effects:TouchEffect.Command="{Binding Command, Source={x:Reference this}}"
+            effects:TouchEffect.CommandParameter="{Binding Item, Source={x:Reference this}}"
+            effects:TouchEffect.NormalBackgroundColor="{StaticResource Light}"
+            effects:TouchEffect.PressedBackgroundColor="{StaticResource LigtSecondary}"
+            ColumnDefinitions="10, *, auto, 40"
+            RowDefinitions="auto,*">
             <BoxView
                 Grid.RowSpan="2"
                 Grid.Column="0"
-                Color="{Binding Status, Converter={converters:StatusToColorConverter}}" />
+                Color="{Binding Item.Status, Source={x:Reference this}, Converter={converters:StatusToColorConverter}}" />
             <Label
                 Grid.Row="0"
                 Grid.Column="1"
@@ -28,7 +34,7 @@
                 HorizontalOptions="StartAndExpand"
                 HorizontalTextAlignment="Start"
                 LineBreakMode="TailTruncation"
-                Text="{Binding JobName}"
+                Text="{Binding Item.JobName, Source={x:Reference this}}"
                 TextColor="Black" />
             <Label
                 Grid.Row="1"
@@ -37,7 +43,7 @@
                 FontSize="12"
                 HorizontalOptions="Start"
                 HorizontalTextAlignment="Start"
-                Text="{Binding Status, Converter={StaticResource JobStatusToStringConverter}}"
+                Text="{Binding Item.Status, Source={x:Reference this}, Converter={StaticResource JobStatusToStringConverter}}"
                 TextColor="Black"
                 VerticalOptions="End"
                 VerticalTextAlignment="End" />
@@ -48,7 +54,7 @@
                 FontSize="12"
                 HorizontalOptions="End"
                 HorizontalTextAlignment="End"
-                Text="{Binding LastActivity, Converter={StaticResource DateToDayAndMonthStringConverter}}"
+                Text="{Binding Item.LastActivity, Source={x:Reference this}, Converter={StaticResource DateToDayAndMonthStringConverter}}"
                 TextColor="Black"
                 VerticalOptions="End" />
 
@@ -70,4 +76,4 @@
         </Grid>
 
     </Border>
-</DataTemplate>
+</ContentView>

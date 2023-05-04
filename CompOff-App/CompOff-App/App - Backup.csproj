@@ -50,6 +50,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\logo.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\Fonts\GillSans-Bold.TTF" />
 	  <None Remove="Resources\Fonts\GillSans-Regular.ttf" />
@@ -69,14 +73,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\NavigationBarSecondary.xaml.cs">
+	    <DependentUpon>NavigationBarSecondary.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="LandingPage.xaml.cs">
 	    <DependentUpon>LandingPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Pages\Tabs\NewJobPage.xaml.cs">
 	    <DependentUpon>NewJobPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Templates\LocationCardTemplate.xaml.cs">
-	    <DependentUpon>LocationCardTemplate.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -84,10 +88,13 @@
 	  <MauiXaml Update="Components\IconButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Components\NavigationBarSecondary.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Components\NavigationBarPrimary.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Components\NavigationBarSecondary.xaml">
+	  <MauiXaml Update="Pages\JobPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Tabs\NewJobPage.xaml">
@@ -99,12 +106,13 @@
 	  <MauiXaml Update="Resources\Styles\Converters.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Templates\LocationCardTemplate.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Templates\JobCardTemplate.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
 	</ItemGroup>
 
 </Project>

@@ -8,9 +8,7 @@
         <Setter Property="Color" Value="{StaticResource Gray200}" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="VerticalOptions" Value="EndAndExpand" />
-
     </Style>
-
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
     </Style>

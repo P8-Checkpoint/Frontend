@@ -10,6 +10,7 @@ using CompOff_App.Services;
 using Shared.Common;
 using CompOff_App.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CompOff_App.Templates;
 
 namespace CompOff_App.Viewmodels.Tabs;
 
@@ -73,6 +74,15 @@ public partial class OverviewPageViewModel : BaseViewModel
     private async Task Nav(object arg)
     {
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage, false);
+    }
+
+    [RelayCommand]
+    public async Task JobClicked(Job job)
+    {
+        await _navigator.RouteAsync(NavigationKeys.JobPage, new Dictionary<string, object>
+        {
+            {"Job", job }
+        });
     }
 
     [RelayCommand]
