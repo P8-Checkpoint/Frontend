@@ -4,12 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:CompOff_App.Components"
-    Title="JobListPage">
+    xmlns:sho="http://sharpnado.com"
+    xmlns:tabViewModels="clr-namespace:CompOff_App.Viewmodels.Tabs"
+    xmlns:templates="clr-namespace:CompOff_App.Templates"
+    Title="JobListPage"
+    x:DataType="tabViewModels:JobListPageViewModel">
     <VerticalStackLayout>
         <components:NavigationBarPrimary />
         <Label
-            HorizontalOptions="Center"
-            Text="JobListPage"
+            Margin="20,20,20,5"
+            FontSize="26"
+            HorizontalOptions="Start"
+            Text="Jobs"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>
