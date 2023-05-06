@@ -40,8 +40,11 @@ public class DataService : IDataService
     private User _user = new("John", "staal", "staalanden");
     private List<Models.Location> _locations = new()
     {
-        new("Trekanten Makerspace", "Resources/Images/Sample.svg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
-        new("Open Space Aarhus", "Resources/Images/Sample.svg", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark"))
+        new("Trekanten Makerspace", "Resources/Images/Sample.jpg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
+        new("Open Space Aarhus", "Resources/Images/Sample.jpg", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark")),
+        new("Teck-Teket Makerspace","Resources/Images/Sample.jpg", new Address("Banegårdspladsen", "1", "Ballerup", "2750", "Denmark")),
+        new("Silkeborg Makerspace","Resources/Images/Sample.jpg", new Address("Hostrupsgade", "41 A", "Silkeborg", "8600", "Denmark")),
+
     };
 
     public DataService()
@@ -83,6 +86,15 @@ public class DataService : IDataService
             job.Status = status;
             job.Description = description;
         }
+        await Task.CompletedTask;
+    }
+
+    public async Task AddJobAsync(Job job)
+    {
+        if (_jobs.Where(x => x.JobID == job.JobID).Any())
+            return;
+
+        _jobs.Add(new(job));
         await Task.CompletedTask;
     }
 }

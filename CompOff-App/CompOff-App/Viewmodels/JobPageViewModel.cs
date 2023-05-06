@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CompOff_App.Models;
 using CompOff_App.Services;
 using CompOff_App.Wrappers;
+using Microsoft.Maui.Platform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,6 @@ namespace CompOff_App.Viewmodels
         {
             var job = await _dataService.GetJobByIdAsync(CurrentJob.JobID);
             CurrentJob = job;
-
             _description = CurrentJob.Description;
             OnPropertyChanged(nameof(CurrentJob));
 

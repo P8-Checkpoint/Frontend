@@ -10,14 +10,26 @@
     x:DataType="models:Location">
     <Border
         Margin="5,0"
-        Padding="20,15,20,5"
+        Padding="15,15,15,5"
         BackgroundColor="{StaticResource Light}"
         Stroke="{StaticResource Light}"
         StrokeShape="RoundRectangle 8"
         StrokeThickness="1"
         WidthRequest="180">
         <Grid ColumnDefinitions="*" RowDefinitions="*,auto">
-            <Image Grid.Row="0" Source="{Binding ImagePath}" />
+            <Border
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                HeightRequest="140"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 70"
+                WidthRequest="140">
+                <Image
+                    Aspect="AspectFill"
+                    HorizontalOptions="Fill"
+                    Source="{Binding ImagePath}" />
+            </Border>
             <Label
                 Grid.Row="1"
                 Margin="0,5,0,0"

@@ -24,7 +24,7 @@ namespace CompOff_App.Common
             //Tabs
             builder.Services.AddTransient<OverviewPage>();
             builder.Services.AddSingleton<JobListPage>();
-            builder.Services.AddSingleton<NewJobPage>();
+            builder.Services.AddTransient<NewJobPage>();
             return builder;
         }
         public static MauiAppBuilder AddWrappers(this MauiAppBuilder builder)
@@ -46,7 +46,7 @@ namespace CompOff_App.Common
             //Tabs
             builder.Services.AddSingleton<OverviewPageViewModel>();
             builder.Services.AddSingleton<JobListPageViewModel>();
-            builder.Services.AddSingleton<NewJobPageViewModel>();
+            builder.Services.AddTransient<NewJobPageViewModel>();
             return builder;
         }
     }

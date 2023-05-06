@@ -59,6 +59,7 @@
 	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\logo.svg" />
 	  <None Remove="Resources\Images\NewJob.svg" />
+	  <None Remove="Resources\Images\sample.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,6 +70,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\IconButtonSecondary.xaml.cs">
+	    <DependentUpon>IconButtonSecondary.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="LandingPage.xaml.cs">
 	    <DependentUpon>LandingPage.xaml</DependentUpon>
 	  </Compile>
@@ -81,6 +85,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Components\IconButtonSecondary.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Components\IconButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

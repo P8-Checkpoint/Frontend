@@ -87,6 +87,7 @@
             <Editor
                 x:Name="DescriptionEntry"
                 Margin="20,0,0,15"
+                AutoSize="TextChanges"
                 CursorPosition="{Binding CurrentJob.Description.Length}"
                 FontSize="16"
                 HorizontalOptions="Start"

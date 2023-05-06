@@ -47,6 +47,15 @@ public partial class JobListPageViewModel : BaseViewModel
         var orderedList = jobList.OrderByDescending(x => x.LastActivity).ToList();
         Jobs.AddRange(orderedList);
     }
-    
-    
+
+    [RelayCommand]
+    public async Task JobClicked(Job job)
+    {
+        await _navigator.RouteAsync(NavigationKeys.JobPage, new Dictionary<string, object>
+        {
+            {"Job", job }
+        });
+    }
+
+
 }
