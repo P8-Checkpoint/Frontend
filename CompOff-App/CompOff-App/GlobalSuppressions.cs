@@ -8,3 +8,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:CompOff_App.Services.Impl.NetworkService.DisconnectFromNetwork(System.String)")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:CompOff_App.Services.Impl.NetworkService.ConnectToNetwork(System.String,System.String)")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:CompOff_App.Services.Impl.NetworkService.FindNearbyNetworks")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:CompOff_App.Services.Impl.NetworkService.DisconnectFromNetwork")]

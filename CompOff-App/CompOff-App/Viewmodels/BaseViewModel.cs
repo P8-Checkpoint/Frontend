@@ -18,4 +18,16 @@ public abstract partial class BaseViewModel : ObservableObject
     private bool isBusy;
 
     public bool IsNotBusy => !IsBusy;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotCollapsed))]
+    public bool collapsed = true;
+
+    public bool IsNotCollapsed => !Collapsed;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotConnected))]
+    public bool connected = false;
+
+    public bool IsNotConnected => !Connected;
 }

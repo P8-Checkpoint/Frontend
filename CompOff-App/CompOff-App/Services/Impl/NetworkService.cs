@@ -16,7 +16,7 @@ using Microsoft.Maui.Platform;
 
 namespace CompOff_App.Services.Impl;
 
-internal class NetworkService : INetworkService
+public class NetworkService : INetworkService
 {
     WifiManager _wifiManager;
 
@@ -49,7 +49,7 @@ internal class NetworkService : INetworkService
         Platform.CurrentActivity.StartActivityForResult(intent: intent, requestCode: 1);
     }
 
-    public void DisconnectFromNetwork(string networkSsid)
+    public void DisconnectFromNetwork()
     {
         if (!_wifiManager.IsWifiEnabled)
         {
@@ -60,7 +60,7 @@ internal class NetworkService : INetworkService
         List<WifiNetworkSuggestion> wifiNetworkSuggestions = new();
 
         _wifiManager.RemoveNetworkSuggestions(wifiNetworkSuggestions);
-    }
+}
 
     public string GetNetworkSsid()
     {
@@ -73,9 +73,10 @@ internal class NetworkService : INetworkService
         {
             Platform.CurrentActivity.StartActivity(intent: new Intent(action: Settings.Panel.ActionWifi));
         }
-    
+
         Intent intent = new(action: Settings.Panel.ActionInternetConnectivity);
 
         Platform.CurrentActivity.StartActivity(intent: intent);
+
     }
 }
