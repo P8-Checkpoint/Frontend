@@ -90,7 +90,7 @@
                 AutoSize="TextChanges"
                 CursorPosition="{Binding CurrentJob.Description.Length}"
                 FontSize="16"
-                HorizontalOptions="Start"
+                HorizontalOptions="StartAndExpand"
                 IsReadOnly="{Binding NotEditingDescription}"
                 MinimumHeightRequest="20"
                 Text="{Binding CurrentJob.Description}"

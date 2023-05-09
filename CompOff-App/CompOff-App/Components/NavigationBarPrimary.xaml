@@ -27,17 +27,8 @@
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 BackgroundColor="{StaticResource Gray100}"
-                BorderColor="Transparent">
-                <Image HorizontalOptions="Center">
-                    <Image.Source>
-                        <FontImageSource
-                            FontFamily="MaterialIconsRegular"
-                            Glyph="&#xe7fd;"
-                            Size="35"
-                            Color="{StaticResource Black}" />
-                    </Image.Source>
-                </Image>
-            </mauiToolkit:AvatarView>
+                BorderColor="Transparent"
+                Text="{Binding Initials, Source={x:Reference this}}" />
             <Label
                 Grid.Row="0"
                 Grid.Column="1"

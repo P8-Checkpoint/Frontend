@@ -62,7 +62,7 @@ public partial class IconButtonSecondary : ContentView
     }
 
     /// <summary>
-    /// Whether the second icon should be shown
+    /// Whether the trailing icon should be shown
     /// </summary>
     public bool ShowTrailingIcon
     {
@@ -116,7 +116,7 @@ public partial class IconButtonSecondary : ContentView
     }
 
     /// <summary>
-    /// The command which is executed when the avatar is tapped. This can be used to open a settings-modal or similarly.
+    /// The command which is executed when the button is tapped.
     /// </summary>
     public ICommand Command
     {

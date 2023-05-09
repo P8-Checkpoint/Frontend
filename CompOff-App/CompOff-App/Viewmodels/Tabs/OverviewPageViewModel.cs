@@ -40,6 +40,12 @@ public partial class OverviewPageViewModel : BaseViewModel
         Jobs.Clear();
         Locations.Clear();
         await LoadCurrentUser();
+
+        if(currentUser == null)
+        {
+            _dataService.ClearDataAndLogout();
+            return;
+        }
         List<Task> tasks = new()
         {
             LoadLatestJobs(),

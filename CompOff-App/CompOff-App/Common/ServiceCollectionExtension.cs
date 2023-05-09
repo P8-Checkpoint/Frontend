@@ -35,6 +35,7 @@ namespace CompOff_App.Common
         public static MauiAppBuilder AddServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<IDataService, DataService>();
+            builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             return builder;
         }
 
