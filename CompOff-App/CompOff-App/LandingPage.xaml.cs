@@ -11,10 +11,16 @@ public partial class LandingPage : ContentPage
 		InitializeComponent();
         BindingContext = vm;
         Vm = vm;
+
+        LoginButton.Command = new Command(async () =>
+        {
+            await Vm.Login(UsernameEntry.Text, PasswordEntry.Text);
+        });
 	}
 
     protected override async void OnAppearing()
     {
+
         base.OnAppearing();
         await Vm.InitializeAsync();
     }

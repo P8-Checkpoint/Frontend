@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CompOff_App.Services;
 using CompOff_App.Shared;
 using CompOff_App.Wrappers;
 using System;
@@ -12,20 +14,45 @@ namespace CompOff_App.Viewmodels;
 public partial class LandingPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator;
+    private readonly IDataService _dataService;
+    private readonly IConnectionService _connectionService;
 
-    public LandingPageViewModel(INavigationWrapper navigator)
+    [ObservableProperty]
+    public bool showError = false;
+
+    public LandingPageViewModel(INavigationWrapper navigator, IDataService dataService, IConnectionService connectionService)
     {
         _navigator = navigator;
+        _dataService = dataService;
+        _connectionService = connectionService;
     }
 
     public async Task InitializeAsync()
     {
-        await Task.CompletedTask;
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
+        var user = await _dataService.GetCurrentUserAsync();
+        if (user != null)
+            await _navigator.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, false);
+        IsBusy = false;
     }
 
-    [RelayCommand]
-    private async Task Login(object arg)
+    public async Task Login(string username, string password)
     {
+        IsBusy = true;
+        await _connectionService.LoginAsync(username, password);
+        IsBusy = false;
+
+        var token = await SecureStorage.GetAsync(StorageKeys.AuthTokenKey);
+        var user = await _dataService.GetCurrentUserAsync();
+        if (token == null || user == null)
+        {
+            ShowError = true;
+            return;
+        }
+
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, false);
     }
 }

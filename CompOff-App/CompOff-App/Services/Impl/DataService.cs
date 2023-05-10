@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using CompOff_App.DTOs;
 using CompOff_App.Models;
+using CompOff_App.Shared;
+using CompOff_App.Wrappers;
 
 namespace CompOff_App.Services.Impl;
 
@@ -37,7 +41,6 @@ public class DataService : IDataService
             LastActivity = new(2023, 4, 26)
         }
     };
-    private User _user = new("John", "staal", "staalanden");
     private List<Models.Location> _locations = new()
     {
         new("Trekanten Makerspace", "Resources/Images/Sample.jpg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
@@ -46,17 +49,25 @@ public class DataService : IDataService
         new("Silkeborg Makerspace","Resources/Images/Sample.jpg", new Address("Hostrupsgade", "41 A", "Silkeborg", "8600", "Denmark")),
 
     };
+    private readonly INavigationWrapper _navigator;
+    private readonly IConnectionService connectionService;
 
-    public DataService()
+    public DataService(INavigationWrapper navigator )
     {
-        Console.WriteLine("Dataservice initialized \n");
+        _navigator = navigator;
     }
     //Create a lot of mockup data to test these methods on
 
-    public async Task<User> GetCurrentUserAsync() //TODO: possibly async?
+    public async Task<User> GetCurrentUserAsync()
     {
-        await Task.CompletedTask;
-        return _user;
+        var userDtoString = await SecureStorage.GetAsync(StorageKeys.UserKey);
+        if (userDtoString == null)
+        {
+            return null;
+        }
+        var userDto = JsonSerializer.Deserialize<UserDto>(userDtoString);
+        return new User(userDto);
+        
     }
 
     public async Task<IEnumerable<Job>> GetJobsAsync()
@@ -96,5 +107,11 @@ public class DataService : IDataService
 
         _jobs.Add(new(job));
         await Task.CompletedTask;
+    }
+
+    public async Task ClearDataAndLogout()
+    {
+        SecureStorage.RemoveAll();
+        await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage);
     }
 }

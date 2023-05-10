@@ -11,7 +11,7 @@ namespace CompOff_App.Viewmodels;
 public abstract partial class BaseViewModel : ObservableObject
 {
     [ObservableProperty]
-    User currentUser = new();
+    public User currentUser = new();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsNotBusy))]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompOff_App.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,14 @@ public class User
         FirstName = firstName;
         LastName = lastName;
         UserName = userName;
+        Initials = GetInitials();
+    }
+
+    public User(UserDto userDto)
+    {
+        FirstName = userDto.FirstName;
+        LastName = userDto.LastName;
+        UserName = userDto.UserName;
         Initials = GetInitials();
     }
 

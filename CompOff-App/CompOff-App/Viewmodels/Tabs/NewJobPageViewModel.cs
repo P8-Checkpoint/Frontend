@@ -90,7 +90,6 @@ public partial class NewJobPageViewModel : BaseViewModel
             {
                 FileName = result.FullPath;
                 _filePath = result.FullPath;
-
             }
 
             return result;

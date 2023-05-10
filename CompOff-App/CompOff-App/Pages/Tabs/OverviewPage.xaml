@@ -112,11 +112,11 @@
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </FlexLayout>
-                <BoxView Margin="20,20" StyleClass="Separator" />
+                <BoxView Margin="0,20" StyleClass="Separator" />
                 <Label
                     Grid.Column="0"
-                    Margin="20,0,20,5"
-                    FontSize="22"
+                    Margin="0,0,0,5"
+                    FontSize="26"
                     Text="Locations"
                     TextColor="Black"
                     VerticalOptions="End" />

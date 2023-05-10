@@ -36,7 +36,7 @@
             Grid.Row="4"
             Margin="20,0,20,0"
             FontSize="16"
-            HorizontalOptions="Start"
+            HorizontalOptions="Fill"
             Placeholder="Enter Job Title..."
             PlaceholderColor="{StaticResource Gray300}"
             TextColor="{StaticResource Gray500}"
@@ -86,10 +86,10 @@
         <Editor
             x:Name="DescriptionEditor"
             Grid.Row="9"
-            Margin="20,0,0,0"
+            Margin="20,0,20,0"
             AutoSize="TextChanges"
             FontSize="16"
-            HorizontalOptions="Start"
+            HorizontalOptions="Fill"
             MinimumHeightRequest="75"
             Placeholder="Enter Job Description..."
             PlaceholderColor="{StaticResource Gray300}"
@@ -99,6 +99,7 @@
             Grid.Row="10"
             Margin="20,0"
             StyleClass="Separator" />
+
         <!--  Description Error  -->
         <HorizontalStackLayout
             Grid.Row="11"
