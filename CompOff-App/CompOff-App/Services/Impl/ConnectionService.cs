@@ -19,7 +19,7 @@ public class ConnectionService : IConnectionService
 
     public ConnectionService()
     {
-        _httpClient.Timeout = TimeSpan.FromSeconds(30);
+        _httpClient.Timeout = TimeSpan.FromSeconds(15);
     }
 
     public async Task LoginAsync(string username, string password)

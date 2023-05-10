@@ -9,7 +9,6 @@ namespace CompOff_App.Models;
 
 public class User
 {
-    public Guid UserID { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string UserName { get; set; }
@@ -21,16 +20,6 @@ public class User
 
     public User(string firstName, string lastName, string userName)
     {
-        UserID = Guid.NewGuid();
-        FirstName = firstName;
-        LastName = lastName;
-        UserName = userName;
-        Initials = GetInitials();
-    }
-
-    public User(Guid userID, string firstName, string lastName, string userName)
-    {
-        UserID = userID;
         FirstName = firstName;
         LastName = lastName;
         UserName = userName;
@@ -39,9 +28,9 @@ public class User
 
     public User(UserDto userDto)
     {
-        FirstName = userDto.FirstName;
-        LastName = userDto.LastName;
-        UserName = userDto.UserName;
+        FirstName = userDto.Firstname;
+        LastName = userDto.Lastname;
+        UserName = userDto.Username;
         Initials = GetInitials();
     }
 

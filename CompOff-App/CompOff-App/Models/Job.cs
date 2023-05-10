@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompOff_App.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -52,10 +53,17 @@ public class Job
         Status = job.Status;
         DateAdded = job.DateAdded;
         LastActivity = job.LastActivity;
-
     }
 
-    public Job()
+    public Job(JobDto job)
     {
+        JobID = job.Id;
+        JobName = job.Name;
+        Description = job.Description;
+        Status = job.Status;
+
+        DateAdded = job.DateAdded;
+        LastActivity = job.LastActivity;
+
     }
 }
