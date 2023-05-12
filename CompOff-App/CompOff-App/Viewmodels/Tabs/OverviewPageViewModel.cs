@@ -41,9 +41,9 @@ public partial class OverviewPageViewModel : BaseViewModel
         Locations.Clear();
         await LoadCurrentUser();
 
-        if(currentUser == null)
+        if(CurrentUser == null)
         {
-            _dataService.ClearDataAndLogout();
+            await _dataService.ClearDataAndLogout();
             return;
         }
         List<Task> tasks = new()
@@ -95,5 +95,4 @@ public partial class OverviewPageViewModel : BaseViewModel
     {
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
     }
-
 }

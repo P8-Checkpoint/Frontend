@@ -23,47 +23,41 @@ public class Job
     public Guid JobID { get; set; }
     public string JobName { get; set; }
     public string Description { get; set; }
-    public string Script { get; set; }
-    public string DataFilePath { get; set; }
-    public string ResultFilePath { get; set; }
     public JobStatus Status { get; set; }
+    public string SourcePath { get; set; }
+    public string BackupPath { get; set; }
+    public string ResultPath { get; set; }
     public DateTime DateAdded { get; set; }
-    public DateTime LastActivity  { get; set; }
+    public DateTime LastActivity { get; set; }
 
-    public Job(string jobName, string description, string script, string dataFilePath)
+    public Job(string jobName, string description, string sourcePath, string backupPath, string resultPath)
     {
         JobID = Guid.NewGuid();
         JobName = jobName;
         Description = description;
-        Script = script;
-        DataFilePath = dataFilePath;
         Status = JobStatus.Waiting;
+        SourcePath = sourcePath;
+        BackupPath = backupPath;
+        ResultPath = resultPath;
         DateAdded = DateTime.Now;
         LastActivity = DateTime.Now;
     }
 
-    public Job(Job job)
-    {
-        JobID = job.JobID;
-        JobName = job.JobName;
-        Description = job.Description;
-        Script = job.Script;
-        DataFilePath = job.DataFilePath;
-        ResultFilePath = job.ResultFilePath;
-        Status = job.Status;
-        DateAdded = job.DateAdded;
-        LastActivity = job.LastActivity;
-    }
-
     public Job(JobDto job)
     {
-        JobID = job.Id;
-        JobName = job.Name;
-        Description = job.Description;
-        Status = job.Status;
+        JobID = job.id;
+        JobName = job.name;
+        Description = job.description;
+        Status = (JobStatus)job.status;
+        SourcePath = job.sourcePath;
+        BackupPath = job.backupPath;
+        ResultPath = job.resultPath;
+        DateAdded = job.dateAdded;
+        LastActivity = job.lastActivity;
 
-        DateAdded = job.DateAdded;
-        LastActivity = job.LastActivity;
+    }
 
+    public Job()
+    {
     }
 }

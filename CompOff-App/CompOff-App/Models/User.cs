@@ -28,9 +28,9 @@ public class User
 
     public User(UserDto userDto)
     {
-        FirstName = userDto.Firstname;
-        LastName = userDto.Lastname;
-        UserName = userDto.Username;
+        FirstName = userDto.firstname;
+        LastName = userDto.lastname;
+        UserName = userDto.username;
         Initials = GetInitials();
     }
 

@@ -70,8 +70,7 @@ public partial class NewJobPageViewModel : BaseViewModel
 
         await Clear();
 
-        var job = new Job(name, description, FileName, _filePath);
-        await _dataService.AddJobAsync(job);
+        await _dataService.AddJobAsync(name, description);
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
     }
 

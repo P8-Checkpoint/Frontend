@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompOff_App.DTOs;
-
-public class JoblistDto
+namespace CompOff_App.DTOs
 {
-    public List<JobDto> Jobs { get; set; }
+    public class TokenDto
+    {
+        public string token { get; set; }
+    }
 }
