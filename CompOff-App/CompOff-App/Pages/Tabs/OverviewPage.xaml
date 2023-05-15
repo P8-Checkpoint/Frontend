@@ -14,7 +14,74 @@
         <VerticalStackLayout>
             <components:NavigationBarPrimary />
             <VerticalStackLayout Padding="20,0">
-                <Grid Margin="0,10,0,5" ColumnDefinitions="*,Auto">
+				<Grid
+					RowDefinitions="Auto"
+					ColumnDefinitions="*, *"
+					Margin="0,10,0,5">
+
+					<Label
+						Grid.Column="0"
+						FontSize="20"
+						VerticalOptions="Center"
+						x:Name="ConnectedToLabel"
+						Text="Connected to:" />
+
+					<components:IconButton
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						IsVisible="{Binding Collapsed}"
+						Command="{Binding AccordionUnfoldCommand}"
+						Glyph="&#xe313;"
+						ShowTrailingIcon="True" />
+
+					<components:IconButton
+						Grid.Column="1"
+						HorizontalOptions="End"
+						VerticalOptions="Center"
+						IsVisible="{Binding IsNotCollapsed}"
+						Command="{Binding AccordionCollapseCommand}"
+						Glyph="&#xe5cd;"
+						ShowTrailingIcon="True" />
+				</Grid>
+				<Grid
+					RowDefinitions="Auto"
+					ColumnDefinitions="*, Auto"
+					Margin="0,10,0,5"
+					IsVisible="{Binding IsNotCollapsed}" >
+
+					<Label
+						Grid.Column="0"
+						Text="Connection id:"
+						HorizontalTextAlignment="Start"
+						VerticalTextAlignment="Start" />
+
+					<components:IconButton
+						Grid.Column="1"
+						Text="Connect to Comp-Off"
+						IsVisible="{Binding IsNotConnected}"
+						Command="{Binding ConnectToNetworkCommand}"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Glyph="&#xeb31;"
+						ShowTrailingIcon="True" />
+
+					<components:IconButton
+						Grid.Column="1"
+						Text="Disconnect"
+						IsVisible="{Binding Connected}"
+						Command="{Binding DisconnectFromNetworkCommand}"
+						HorizontalOptions="Start"
+						VerticalOptions="Center"
+						Glyph="&#xe648;"
+						ShowTrailingIcon="True" />
+				</Grid>
+
+				<BoxView
+					Margin="0"
+					StyleClass="Separator" />
+
+				<Grid Margin="0,10,0,5" ColumnDefinitions="*,Auto">
                     <Label
                         Grid.Column="0"
                         FontSize="26"

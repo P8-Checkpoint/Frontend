@@ -11,6 +11,7 @@ using Shared.Common;
 using CompOff_App.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CompOff_App.Templates;
+using CompOff_App.Services.Impl;
 
 namespace CompOff_App.Viewmodels.Tabs;
 
@@ -18,6 +19,8 @@ public partial class OverviewPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator;
     private readonly IDataService _dataService;
+
+    private NetworkService _networkService = new();
 
     private const int NUMBER_OF_JOBS_SHOWN = 3;
 
@@ -94,5 +97,36 @@ public partial class OverviewPageViewModel : BaseViewModel
     private async Task ShowAllJobs(object arg)
     {
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
+    }
+
+    [RelayCommand]
+    private void AccordionCollapse()
+    {
+        Collapsed = !Collapsed;
+    }
+
+    [RelayCommand]
+    private void AccordionUnfold()
+    {
+        Collapsed = !Collapsed;
+    }
+
+    [RelayCommand]
+    private void ConnectToNetwork()
+    {
+        string networkSsid = "Worker1AP";
+        string networkPassword = "Worker1AP";
+
+        _networkService.ConnectToNetwork(networkSsid, networkPassword);
+
+        Connected = !Connected;
+    }
+
+    [RelayCommand]
+    private void DisconnectFromNetwork()
+    {
+        _networkService.DisconnectFromNetwork();
+
+        Connected = !Connected;
     }
 }
