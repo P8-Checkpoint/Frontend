@@ -99,16 +99,20 @@ public class ConnectionService : IConnectionService
         }
     }
 
-    public async Task CreateJobAsync(string name, string description)
+    public async Task<Job> CreateJobAsync(string name, string description)
     {
         try
         {
             var uri = baseUri + $"ServiceTask/Create?name={name}&description={description}'";
             HttpResponseMessage response = await _httpClient.PostAsync(uri, new StringContent(""));
             response.EnsureSuccessStatusCode();
+            var jobString = await response.Content.ReadAsStringAsync();
+            var job = JsonSerializer.Deserialize<JobDto>(jobString);
+            return new Job(job);
         }
         catch (Exception e)
         {
+            return new Job();
         }
     }
     
@@ -141,6 +145,39 @@ public class ConnectionService : IConnectionService
         }
         catch (Exception e)
         {
+        }
+    }
+
+    public async Task StartJobAsync(Job job)
+    {
+        try
+        {
+            var uri = baseUri + $"ServiceTask/Start?taskId={job.JobID}";
+            StringContent content = new("");
+            HttpResponseMessage response = await _httpClient.PutAsync(uri, content);
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public async Task<PrepareDto> PrepareJob(Job job)
+    {
+        try
+        {
+            var uri = baseUri + $"ServiceTask/Prepare?taskId={job.JobID}";
+            StringContent content = new("");
+            HttpResponseMessage response = await _httpClient.PutAsync(uri, content);
+            response.EnsureSuccessStatusCode();
+            var prepareString = await response.Content.ReadAsStringAsync();
+            var prepareDto = JsonSerializer.Deserialize<PrepareDto>(prepareString);
+            return prepareDto;
+
+        }
+        catch (Exception e)
+        {
+            return null;
         }
     }
 }

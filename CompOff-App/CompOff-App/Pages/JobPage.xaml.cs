@@ -16,5 +16,6 @@ public partial class JobPage : ContentPage
     {
         base.OnAppearing();
         await Vm.InitializeAsync();
+        Backdrop.Opacity = 0.6;
     }
 }

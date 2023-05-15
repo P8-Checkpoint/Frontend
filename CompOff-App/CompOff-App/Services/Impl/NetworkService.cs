@@ -32,6 +32,7 @@ public class NetworkService : INetworkService
 
     public void ConnectToNetwork(string networkSsid, string networkPassword)
     {
+#if ANDROID
         // Create list of WiFi networks to add to the users saved networks.
         WifiNetworkSuggestion networkSuggestions = new WifiNetworkSuggestion.Builder()
             .SetSsid(ssid: networkSsid)
@@ -41,12 +42,16 @@ public class NetworkService : INetworkService
 
         ArrayList wifiNetworkSuggestions = new();
         wifiNetworkSuggestions.Add(networkSuggestions);
-
-        // Prompt the user to add the networks.
-        Intent intent = new(action: Settings.ActionWifiAddNetworks);
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            // Prompt the user to add the networks.
+            Intent intent = new(action: Settings.ActionWifiAddNetworks);
         intent.PutExtra(name: Settings.ExtraWifiNetworkList, value: wifiNetworkSuggestions);
-
-        Platform.CurrentActivity.StartActivityForResult(intent: intent, requestCode: 1);
+        
+            Platform.CurrentActivity.StartActivityForResult(intent: intent, requestCode: 1);
+        });
+        
+#endif
     }
 
     public void DisconnectFromNetwork()

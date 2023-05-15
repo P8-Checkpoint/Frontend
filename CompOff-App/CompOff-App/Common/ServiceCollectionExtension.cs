@@ -36,6 +36,8 @@ namespace CompOff_App.Common
         {
             builder.Services.AddSingleton<IDataService, DataService>();
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
+            builder.Services.AddSingleton<IFileService, FileService>();
+            builder.Services.AddSingleton<INetworkService, NetworkService>();
             return builder;
         }
 

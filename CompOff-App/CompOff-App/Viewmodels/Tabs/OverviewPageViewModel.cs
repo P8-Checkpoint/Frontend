@@ -19,8 +19,8 @@ public partial class OverviewPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator;
     private readonly IDataService _dataService;
+    private readonly INetworkService _networkService;
 
-    private NetworkService _networkService = new();
 
     private const int NUMBER_OF_JOBS_SHOWN = 3;
 
@@ -28,10 +28,11 @@ public partial class OverviewPageViewModel : BaseViewModel
 
     public ObservableRangeCollection<Models.Location> Locations { get; set; } = new();
 
-    public OverviewPageViewModel(INavigationWrapper navigator, IDataService dataService)
+    public OverviewPageViewModel(INavigationWrapper navigator, IDataService dataService, INetworkService networkService)
     {
         _navigator = navigator;
         _dataService = dataService;
+        _networkService = networkService;
     }
 
     public async Task InitializeAsync()
@@ -103,23 +104,7 @@ public partial class OverviewPageViewModel : BaseViewModel
     private void AccordionCollapse()
     {
         Collapsed = !Collapsed;
-    }
-
-    [RelayCommand]
-    private void AccordionUnfold()
-    {
-        Collapsed = !Collapsed;
-    }
-
-    [RelayCommand]
-    private void ConnectToNetwork()
-    {
-        string networkSsid = "Worker1AP";
-        string networkPassword = "Worker1AP";
-
-        _networkService.ConnectToNetwork(networkSsid, networkPassword);
-
-        Connected = !Connected;
+        OnPropertyChanged(nameof(Collapsed));
     }
 
     [RelayCommand]
@@ -128,5 +113,6 @@ public partial class OverviewPageViewModel : BaseViewModel
         _networkService.DisconnectFromNetwork();
 
         Connected = !Connected;
+        OnPropertyChanged(nameof(Connected));
     }
 }

@@ -16,11 +16,13 @@ public partial class NewJobPageViewModel : BaseViewModel
 {
     private readonly INavigationWrapper _navigator; 
     private readonly IDataService _dataService;
+    private readonly IFileService _fileService;
 
-    public NewJobPageViewModel(INavigationWrapper navigator, IDataService dataService)
+    public NewJobPageViewModel(INavigationWrapper navigator, IDataService dataService, IFileService fileService)
     {
         _navigator = navigator;
         _dataService = dataService;
+        _fileService = fileService;
     }
 
     [ObservableProperty]
@@ -67,10 +69,9 @@ public partial class NewJobPageViewModel : BaseViewModel
 
         if (ShowTitleError || ShowDescriptionError || ShowFileError)
             return;
-
+        var job = await _dataService.AddJobAsync(name, description);
+        _fileService.AddScript(job.JobID, _filePath);
         await Clear();
-
-        await _dataService.AddJobAsync(name, description);
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
     }
 
@@ -80,24 +81,26 @@ public partial class NewJobPageViewModel : BaseViewModel
         await PickAndShow(new PickOptions());
     }
 
-    public async Task<FileResult> PickAndShow(PickOptions options)
+    public async Task PickAndShow(PickOptions options)
     {
         try
         {
             var result = await FilePicker.Default.PickAsync(options);
             if (result != null)
             {
-                FileName = result.FullPath;
+                if (!result.FileName.EndsWith("py", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowFileError = true;
+                    return;
+                }
+                    FileName = result.FileName;
                 _filePath = result.FullPath;
             }
 
-            return result;
         }
         catch (Exception ex)
         {
             // The user canceled or something went wrong
         }
-
-        return null;
     }
 }

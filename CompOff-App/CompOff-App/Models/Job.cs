@@ -48,7 +48,7 @@ public class Job
         JobID = job.id;
         JobName = job.name;
         Description = job.description;
-        Status = (JobStatus)job.status;
+        Status = EnumConverter(job.status);
         SourcePath = job.sourcePath;
         BackupPath = job.backupPath;
         ResultPath = job.resultPath;
@@ -59,5 +59,31 @@ public class Job
 
     public Job()
     {
+    }
+
+    private static JobStatus EnumConverter(int status)
+    {
+        switch (status)
+        {
+            case 0:
+                return JobStatus.Waiting;
+            case 1:
+                return JobStatus.InQueue;
+            case 2:
+                return JobStatus.Running;
+            case 3:
+            case 4:
+                return JobStatus.Cancelled;
+            case 5:
+            case 6:
+                return JobStatus.Done;
+            case 7:
+            case 8:
+                return JobStatus.Waiting;
+            case 9:
+                return JobStatus.InQueue;
+            default:
+                return JobStatus.Waiting;
+        }
     }
 }

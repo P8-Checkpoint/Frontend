@@ -63,9 +63,14 @@ public class DataService : IDataService
         await _connectionService.UpdateJobAsync(job);
     }
 
-    public async Task AddJobAsync(string name, string description)
+    public async Task CancelJobAsync(Job job)
     {
-        await _connectionService.CreateJobAsync(name, description);
+        await _connectionService.CancelJobAsync(job);
+    }
+
+    public async Task<Job> AddJobAsync(string name, string description)
+    {
+        return await _connectionService.CreateJobAsync(name, description);
     }
 
     public async Task ClearDataAndLogout()
