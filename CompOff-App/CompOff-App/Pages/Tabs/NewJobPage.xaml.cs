@@ -15,6 +15,7 @@ public partial class NewJobPage : ContentPage
         BindingContext = vm;
         Vm = vm;
 
+
         AddButton.Command = new Command(async () =>
         {
             await Vm.AddJob(TitleEditor.Text, DescriptionEditor.Text);

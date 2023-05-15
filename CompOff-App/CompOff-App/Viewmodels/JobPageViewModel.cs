@@ -16,8 +16,6 @@ namespace CompOff_App.Viewmodels
     {
         private readonly INavigationWrapper _navigator;
         private readonly IDataService _dataService;
-        
-        private string _description;
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
@@ -61,7 +59,6 @@ namespace CompOff_App.Viewmodels
         {
             var job = await _dataService.GetJobByIdAsync(CurrentJob.JobID);
             CurrentJob = job;
-            _description = CurrentJob.Description;
             OnPropertyChanged(nameof(CurrentJob));
 
             ShowCancelButton = CurrentJob.Status is JobStatus.Waiting or JobStatus.InQueue or JobStatus.Running;
@@ -79,7 +76,7 @@ namespace CompOff_App.Viewmodels
         [RelayCommand]
         public async Task Cancel(object arg)
         {
-            await _dataService.UpdateJobAsync(CurrentJob.JobID, CurrentJob.JobName, JobStatus.Cancelled, CurrentJob.Description);
+            await _dataService.UpdateJobAsync(CurrentJob);
             await Update();
         }
 
@@ -100,8 +97,8 @@ namespace CompOff_App.Viewmodels
         public async Task SubmitDescriptionChange(object arg)
         {
             NotEditingDescription = true;
-            _description = (string)arg;
-            await _dataService.UpdateJobAsync(CurrentJob.JobID, CurrentJob.JobName, CurrentJob.Status, _description);
+            CurrentJob.Description = (string)arg;
+            await _dataService.UpdateJobAsync(CurrentJob);
             await Update();
         }
 
@@ -109,7 +106,6 @@ namespace CompOff_App.Viewmodels
         public async Task CancelDescriptionEdit(object arg)
         {
             NotEditingDescription = true;
-            CurrentJob.Description = _description;
             OnPropertyChanged(nameof(CurrentJob));
             await Update();
         }

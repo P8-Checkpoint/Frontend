@@ -8,15 +8,15 @@ namespace CompOff_App.DTOs
 {
     public class UserDto
     {
-        public string FirstName;
-        public string LastName;
-        public string UserName;
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string username { get; set; }
 
         public UserDto(string firstName, string lastName, string userName)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            UserName = userName;
+            firstname = firstName;
+            lastname = lastName;
+            username = userName;
         }
     }
 }

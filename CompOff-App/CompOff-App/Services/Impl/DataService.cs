@@ -13,34 +13,6 @@ namespace CompOff_App.Services.Impl;
 
 public class DataService : IDataService
 {
-    private List<Job> _jobs = new()
-    {
-        new("Home Video Render", "video rendering for new home video", "homevideo.mp4", "C:/User/homevideos")
-        {
-            DateAdded = new(2023, 4, 24),
-            LastActivity = new(2023,4,25),
-            Status = JobStatus.Cancelled
-            
-        },
-        new("N-Beats", "Machine learning algorithm, big data", "notavirus.exe", "C:/User/folder1")
-        {
-            DateAdded = new(2023, 4, 22),
-            LastActivity = new(2023, 4, 22),
-            Status = JobStatus.Waiting
-            
-        },
-        new("Neural Network", "Deepfake learning", "deepfake", "C:/User/deeplearning")
-        {
-            DateAdded = new(2023, 4, 21),
-            LastActivity = new(2023, 4, 24),
-            Status = JobStatus.InQueue
-        },
-        new("Auto Tuner but this name is way too long to fit on the page so i hope that my truncation truly works", "Autotuner for pitch correction", "autotune.exe", "C:/User/music/pitchcorrection")
-        {
-            DateAdded = new(2023, 4, 25),
-            LastActivity = new(2023, 4, 26)
-        }
-    };
     private List<Models.Location> _locations = new()
     {
         new("Trekanten Makerspace", "Resources/Images/Sample.jpg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
@@ -50,11 +22,12 @@ public class DataService : IDataService
 
     };
     private readonly INavigationWrapper _navigator;
-    private readonly IConnectionService connectionService;
+    private readonly IConnectionService _connectionService;
 
-    public DataService(INavigationWrapper navigator )
+    public DataService(INavigationWrapper navigator, IConnectionService connectionService)
     {
         _navigator = navigator;
+        _connectionService = connectionService;
     }
     //Create a lot of mockup data to test these methods on
 
@@ -67,13 +40,11 @@ public class DataService : IDataService
         }
         var userDto = JsonSerializer.Deserialize<UserDto>(userDtoString);
         return new User(userDto);
-        
     }
 
     public async Task<IEnumerable<Job>> GetJobsAsync()
     {
-        await Task.CompletedTask;
-        return _jobs.Select(x => new Job(x)) ;
+        return await _connectionService.GetJobsAsync();
     }
 
     public async Task<IEnumerable<Models.Location>> GetLocationsAsync()
@@ -84,29 +55,17 @@ public class DataService : IDataService
 
     public async Task<Job> GetJobByIdAsync(Guid id)
     {
-        await Task.CompletedTask;
-        return new Job (_jobs.Where(x => x.JobID == id).FirstOrDefault());
+        return await _connectionService.GetJobByIdAsync(id);
     }
 
-    public async Task UpdateJobAsync(Guid id, string name, JobStatus status, string description)
+    public async Task UpdateJobAsync(Job job)
     {
-        var job = _jobs.FirstOrDefault(x => x.JobID == id);
-        if (job != null)
-        {
-            job.JobName = name;
-            job.Status = status;
-            job.Description = description;
-        }
-        await Task.CompletedTask;
+        await _connectionService.UpdateJobAsync(job);
     }
 
-    public async Task AddJobAsync(Job job)
+    public async Task AddJobAsync(string name, string description)
     {
-        if (_jobs.Where(x => x.JobID == job.JobID).Any())
-            return;
-
-        _jobs.Add(new(job));
-        await Task.CompletedTask;
+        await _connectionService.CreateJobAsync(name, description);
     }
 
     public async Task ClearDataAndLogout()

@@ -31,12 +31,6 @@ public partial class LandingPageViewModel : BaseViewModel
     {
         if (IsBusy)
             return;
-
-        IsBusy = true;
-        var user = await _dataService.GetCurrentUserAsync();
-        if (user != null)
-            await _navigator.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, false);
-        IsBusy = false;
     }
 
     public async Task Login(string username, string password)
