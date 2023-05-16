@@ -35,6 +35,7 @@ public partial class LandingPageViewModel : BaseViewModel
 
     public async Task Login(string username, string password)
     {
+        await _dataService.ClearDataAndLogout();
         IsBusy = true;
         await _connectionService.LoginAsync(username, password);
         IsBusy = false;

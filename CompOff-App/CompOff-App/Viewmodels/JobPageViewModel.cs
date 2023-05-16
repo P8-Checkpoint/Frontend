@@ -48,6 +48,9 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
     [NotifyPropertyChangedFor(nameof(IsNotPreparing))]
     public bool isPreparing = false;
 
+    [ObservableProperty]
+    public bool showResult = false;
+
     public bool IsNotPreparing => !IsPreparing;
 
     [ObservableProperty]
@@ -78,8 +81,11 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
         CurrentJob = job;
         OnPropertyChanged(nameof(CurrentJob));
 
-        IsWaiting = CurrentJob.Status is JobStatus.Waiting;
+        IsWaiting = CurrentJob.Status is JobStatus.Waiting or JobStatus.Paused;
         IsRunning = CurrentJob.Status is JobStatus.Running or JobStatus.InQueue;
+        ShowResult = CurrentJob.Status is JobStatus.Done;
+
+        OnPropertyChanged(nameof(ShowResult));
         OnPropertyChanged(nameof(IsWaiting));
         OnPropertyChanged(nameof(IsRunning));
     }
@@ -93,6 +99,7 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
     [RelayCommand]
     public async Task Start(object arg)
     {
+        var status = CurrentJob.Status;
         IsPreparing = true;
         var prepareDto = await _connectionService.PrepareJob(CurrentJob);
 
@@ -100,8 +107,7 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
         {
             ShowWorkerError = true;
             OnPropertyChanged(nameof(ShowWorkerError));
-            isPreparing = false;
-            await Update();
+            IsPreparing = false;
             return;
         }
 
@@ -111,8 +117,24 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
         CurrentJob = new Job(prepareDto.serviceTask);
 
         _networkService.ConnectToNetwork(prepareDto.wifi.ssid, prepareDto.wifi.password);
-        _fileService.UploadScript(CurrentJob);
-
+        if(status == JobStatus.Paused)
+        {
+            var success = _fileService.UploadCheckpointIsh(CurrentJob);
+            if (!success)
+            {
+                await _dataService.ClearDataAndLogout();
+                return;
+            }
+        }
+        else
+        {
+            var success = _fileService.UploadScript(CurrentJob);
+            if (!success)
+            {
+                await _dataService.ClearDataAndLogout();
+                return;
+            }
+        }
         await _connectionService.StartJobAsync(CurrentJob);
         Thread.Sleep(50);
 
@@ -155,5 +177,23 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
         NotEditingDescription = true;
         OnPropertyChanged(nameof(CurrentJob));
         await Update();
+    }
+
+    [RelayCommand]
+    public async Task DownloadResult()
+    {
+        var success = _fileService.DownloadScript(CurrentJob);
+        if (!success)
+            await _dataService.ClearDataAndLogout();
+    }
+
+    [RelayCommand]
+    public async Task Stop()
+    {
+        var success = _fileService.DownloadCheckpointIsh(CurrentJob);
+        if (!success)
+            await _dataService.ClearDataAndLogout();
+
+        await _connectionService.StopJobAsync(CurrentJob);
     }
 }

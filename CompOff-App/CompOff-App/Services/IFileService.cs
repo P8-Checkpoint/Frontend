@@ -10,6 +10,9 @@ namespace CompOff_App.Services
     public interface IFileService
     {
         public void AddScript(Guid jobId, string path);
-        public void UploadScript(Job job);
+        public bool UploadScript(Job job);
+        public bool DownloadScript(Job job);
+        public bool UploadCheckpointIsh(Job job);
+        public bool DownloadCheckpointIsh(Job job);
     }
 }

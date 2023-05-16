@@ -25,7 +25,7 @@
                 TextColor="Black"
                 VerticalOptions="Center" />
             <ScrollView Grid.Row="1">
-                <CollectionView ItemsSource="{Binding Jobs}" VerticalScrollBarVisibility="Always">
+                <CollectionView ItemsSource="{Binding Jobs}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Job">
                             <templates:JobCardTemplate

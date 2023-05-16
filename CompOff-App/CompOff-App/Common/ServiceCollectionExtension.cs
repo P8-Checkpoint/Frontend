@@ -6,6 +6,8 @@ using CompOff_App.Viewmodels;
 using CompOff_App.Viewmodels.Tabs;
 using CompOff_App.Wrappers;
 using CompOff_App.Wrappers.Impl;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,10 @@ namespace CompOff_App.Common
             builder.Services.AddSingleton<IDataService, DataService>();
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             builder.Services.AddSingleton<IFileService, FileService>();
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
+#if ANDROID
             builder.Services.AddSingleton<INetworkService, NetworkService>();
+#endif
             return builder;
         }
 

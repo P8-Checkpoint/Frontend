@@ -15,7 +15,7 @@ namespace CompOff_App.Services.Impl;
 
 public class ConnectionService : IConnectionService
 {
-    private readonly string baseUri = "http://192.168.0.103:5000/api/"; 
+    private readonly string baseUri = "http://192.168.1.109:5000/api/"; 
     private readonly HttpClient _httpClient = new();
 
     public ConnectionService()
@@ -159,6 +159,7 @@ public class ConnectionService : IConnectionService
         }
         catch (Exception e)
         {
+            Console.WriteLine();
         }
     }
 
@@ -180,4 +181,22 @@ public class ConnectionService : IConnectionService
             return null;
         }
     }
+
+    public async Task StopJobAsync(Job job)
+    {
+        try
+        {
+            var uri = baseUri + $"ServiceTask/Stop?taskId={job.JobID}";
+            StringContent content = new("");
+            HttpResponseMessage response = await _httpClient.PutAsync(uri, content);
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine();
+        }
+    }
+
+
+
 }

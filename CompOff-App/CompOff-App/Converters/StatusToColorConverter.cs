@@ -20,6 +20,7 @@ namespace CompOff_App.Converters
                 JobStatus.Running => Color.FromRgba("#345DA7"),
                 JobStatus.Cancelled => Color.FromRgba("#FF0000"),
                 JobStatus.Done => Color.FromRgba("#00DE00"),
+                JobStatus.Paused => Color.FromRgba("#FF9933"),
                 _ => Color.FromRgba("#F1EAE6"),
             };
         }

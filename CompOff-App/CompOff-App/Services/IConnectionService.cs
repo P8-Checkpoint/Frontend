@@ -18,4 +18,5 @@ public interface IConnectionService
     public Task CancelJobAsync(Job job);
     public Task<PrepareDto> PrepareJob(Job job);
     public Task StartJobAsync(Job job);
+    public Task StopJobAsync(Job job);
 }

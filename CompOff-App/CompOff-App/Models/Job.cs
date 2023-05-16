@@ -15,7 +15,8 @@ public enum JobStatus
     InQueue,
     Running,
     Cancelled,
-    Done
+    Done,
+    Paused
 }
 
 public class Job
@@ -79,7 +80,7 @@ public class Job
                 return JobStatus.Done;
             case 7:
             case 8:
-                return JobStatus.Waiting;
+                return JobStatus.Paused;
             case 9:
                 return JobStatus.InQueue;
             default:

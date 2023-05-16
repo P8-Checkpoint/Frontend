@@ -32,7 +32,7 @@
                     <FontImageSource
                         FontFamily="MaterialIconsRegular"
                         Glyph="&#xe5c4;"
-                        Size="25"
+                        Size="30"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>
@@ -64,7 +64,7 @@
                     <FontImageSource
                         FontFamily="MaterialIconsRegular"
                         Glyph="&#xe923;"
-                        Size="25"
+                        Size="30"
                         Color="{StaticResource White}" />
                 </Image.Source>
             </Image>

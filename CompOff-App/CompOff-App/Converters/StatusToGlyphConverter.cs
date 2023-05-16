@@ -20,6 +20,7 @@ namespace CompOff_App.Converters
                 JobStatus.Running => "\uef6f",
                 JobStatus.Cancelled => "\ue5c9",
                 JobStatus.Done => "\ue86c",
+                JobStatus.Paused => "\ue1a2",
                 _ => "\uef64",
             };
         }
