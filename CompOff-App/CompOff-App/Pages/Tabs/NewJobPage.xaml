@@ -9,7 +9,10 @@
     x:Name="this"
     Title="NewJobPage">
     <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, auto, *" VerticalOptions="Fill">
-        <components:NavigationBarPrimary Grid.Row="0" UserName="{Binding Current}" />
+        <components:NavigationBarPrimary
+            Firstname="{Binding CurrentUser.FirstName}"
+            Initials="{Binding CurrentUser.Initials}"
+            Lastname="{Binding CurrentUser.LastName}" />
         <Label
             Grid.Row="1"
             Margin="20,10"

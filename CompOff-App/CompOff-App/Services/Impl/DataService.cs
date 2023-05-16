@@ -13,14 +13,6 @@ namespace CompOff_App.Services.Impl;
 
 public class DataService : IDataService
 {
-    private List<Models.Location> _locations = new()
-    {
-        new("Trekanten Makerspace", "Resources/Images/Sample.jpg", new Address("Sofiendahlsvej", "80", "Aalborg", "9220", "Denmark")),
-        new("Open Space Aarhus", "Resources/Images/Sample.jpg", new Address("Olof palmes alle", "11", "Aarhus", "8200", "Denmark")),
-        new("Teck-Teket Makerspace","Resources/Images/Sample.jpg", new Address("Banegårdspladsen", "1", "Ballerup", "2750", "Denmark")),
-        new("Silkeborg Makerspace","Resources/Images/Sample.jpg", new Address("Hostrupsgade", "41 A", "Silkeborg", "8600", "Denmark")),
-
-    };
     private readonly INavigationWrapper _navigator;
     private readonly IConnectionService _connectionService;
 
@@ -49,8 +41,10 @@ public class DataService : IDataService
 
     public async Task<IEnumerable<Models.Location>> GetLocationsAsync()
     {
-        await Task.CompletedTask;
-        return _locations;
+        var locationDtos = await _connectionService.GetLocations();
+        var userLocation = await Geolocation.Default.GetLastKnownLocationAsync();
+        List<Models.Location> locations = locationDtos.Select(l => new Models.Location(l, userLocation)).ToList();
+        return locations;
     }
 
     public async Task<Job> GetJobByIdAsync(Guid id)
@@ -78,4 +72,5 @@ public class DataService : IDataService
         SecureStorage.RemoveAll();
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage);
     }
+
 }

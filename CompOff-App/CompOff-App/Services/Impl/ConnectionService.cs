@@ -15,7 +15,7 @@ namespace CompOff_App.Services.Impl;
 
 public class ConnectionService : IConnectionService
 {
-    private readonly string baseUri = "http://192.168.1.109:5000/api/"; 
+    private readonly string baseUri = "http://192.168.87.135:5000/api/"; 
     private readonly HttpClient _httpClient = new();
 
     public ConnectionService()
@@ -197,6 +197,20 @@ public class ConnectionService : IConnectionService
         }
     }
 
-
-
+    public async Task<List<LocationDto>> GetLocations()
+    {
+        try
+        {
+            var uri = baseUri + "Location/Locations";
+            HttpResponseMessage response = await _httpClient.GetAsync(uri);
+            response.EnsureSuccessStatusCode();
+            var locations = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<List<LocationDto>>(locations);
+            
+        }
+        catch (Exception e)
+        {
+            return new List<LocationDto>();
+        }
+    }
 }

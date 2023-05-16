@@ -36,6 +36,6 @@ public class User
 
     private string GetInitials()
     {
-        return string.Concat(FirstName.AsSpan(0,1), LastName.AsSpan(0,1));
+        return string.Concat(FirstName.AsSpan(0,1), LastName.AsSpan(0,1)).ToUpper();
     }
 }

@@ -26,29 +26,42 @@
             <mauiToolkit:AvatarView
                 Grid.RowSpan="2"
                 Grid.Column="0"
-                BackgroundColor="{StaticResource Gray100}"
+                BackgroundColor="{StaticResource Gray200}"
                 BorderColor="Transparent"
-                Text="{Binding Initials, Source={x:Reference this}}" />
+                Text="{Binding Initials, Source={x:Reference this}}"
+                FontSize="20"/>
             <Label
                 Grid.Row="0"
                 Grid.Column="1"
-                FontSize="14"
+                FontSize="16"
                 HorizontalOptions="Fill"
                 LineBreakMode="TailTruncation"
                 MaxLines="1"
                 Text="Hello"
                 TextColor="White"
                 VerticalOptions="End" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                FontSize="16"
-                HorizontalOptions="Fill"
-                LineBreakMode="TailTruncation"
-                MaxLines="1"
-                Text="{Binding UserName, Source={x:Reference this}}"
-                TextColor="White"
-                VerticalOptions="Center" />
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+                <Label
+                    Margin="0,0,3,0"
+                    FontSize="18"
+                    HorizontalOptions="Fill"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1"
+                    Text="{Binding Firstname, Source={x:Reference this}}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Fill"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="1"
+                    Text="{Binding Lastname, Source={x:Reference this}}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+
         </Grid>
 
         <!--  Spacer  -->

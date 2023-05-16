@@ -21,6 +21,9 @@ public partial class JobListPageViewModel : BaseViewModel
 
     public ObservableRangeCollection<Job> Jobs { get; set; } = new();
 
+    [ObservableProperty]
+    public bool showEmptyView = false;
+
     public JobListPageViewModel(INavigationWrapper navigator, IDataService dataService)
     {
         _navigator = navigator;
@@ -33,7 +36,7 @@ public partial class JobListPageViewModel : BaseViewModel
             return;
         IsBusy = true;
         Jobs.Clear();
-
+        await LoadCurrentUser();
         List<Task> tasks = new() { LoadLatestJobs() };
         await Task.WhenAll(tasks);
         IsBusy = false;
@@ -41,11 +44,21 @@ public partial class JobListPageViewModel : BaseViewModel
         await Task.CompletedTask;
     }
 
+    private async Task LoadCurrentUser()
+    {
+        CurrentUser = await _dataService.GetCurrentUserAsync();
+    }
+
     private async Task LoadLatestJobs()
     {
         var jobList = await _dataService.GetJobsAsync();
         var orderedList = jobList.OrderByDescending(x => x.LastActivity).ToList();
         Jobs.AddRange(orderedList);
+
+        if (Jobs.Any())
+            ShowEmptyView = false;
+        else
+            ShowEmptyView = true;
     }
 
     [RelayCommand]

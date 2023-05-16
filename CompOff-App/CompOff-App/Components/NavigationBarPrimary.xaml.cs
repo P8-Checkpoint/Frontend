@@ -12,7 +12,10 @@ public partial class NavigationBarPrimary : ContentView
     public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(NavigationBarPrimary));
     
 
-    public static readonly BindableProperty UserNameProperty = BindableProperty.Create(nameof(UserName), typeof(string), typeof(NavigationBarPrimary), "User Name");
+    public static readonly BindableProperty FirstnameProperty = BindableProperty.Create(nameof(Firstname), typeof(string), typeof(NavigationBarPrimary), "User");
+
+
+    public static readonly BindableProperty LastnameProperty = BindableProperty.Create(nameof(Lastname), typeof(string), typeof(NavigationBarPrimary), "Name");
 
 
     public static readonly BindableProperty InitialsProperty = BindableProperty.Create(nameof(Initials), typeof(string), typeof(NavigationBarPrimary), "UN");
@@ -23,10 +26,16 @@ public partial class NavigationBarPrimary : ContentView
         set => SetValue(CommandProperty, value);
     }
 
-    public string UserName
+    public string Firstname
     {
-        get => (string)GetValue(UserNameProperty);
-        set => SetValue(UserNameProperty, value);
+        get => (string)GetValue(FirstnameProperty);
+        set => SetValue(FirstnameProperty, value);
+    }
+
+    public string Lastname
+    {
+        get => (string)GetValue(LastnameProperty);
+        set => SetValue(LastnameProperty, value);
     }
 
     public string Initials

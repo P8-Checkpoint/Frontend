@@ -28,6 +28,9 @@ public partial class OverviewPageViewModel : BaseViewModel
 
     public ObservableRangeCollection<Models.Location> Locations { get; set; } = new();
 
+    [ObservableProperty]
+    public bool showEmptyView = false;
+
     public OverviewPageViewModel(INavigationWrapper navigator, IDataService dataService, INetworkService networkService)
     {
         _navigator = navigator;
@@ -66,11 +69,16 @@ public partial class OverviewPageViewModel : BaseViewModel
         var orderedList = jobList.OrderByDescending(x => x.LastActivity).ToList().Take(NUMBER_OF_JOBS_SHOWN);
 
         Jobs.AddRange(orderedList);
+        if (Jobs.Any())
+            ShowEmptyView = false;
+        else 
+            ShowEmptyView = true;
     }
 
     private async Task LoadLocations()
     {
         var locationList = await _dataService.GetLocationsAsync();
+        locationList = locationList.OrderBy(x => x.Distance);
         Locations.AddRange(locationList);
     }
 

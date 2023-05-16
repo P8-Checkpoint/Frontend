@@ -43,7 +43,18 @@ public partial class NewJobPageViewModel : BaseViewModel
 
     public async Task InitializeAsync()
     {
+        if (IsBusy)
+            return;
+
+        IsBusy = true;
         await ResetErrors();
+        await LoadCurrentUser();
+        IsBusy = false;
+    }
+
+    private async Task LoadCurrentUser()
+    {
+        CurrentUser = await _dataService.GetCurrentUserAsync();
     }
 
     private Task ResetErrors()

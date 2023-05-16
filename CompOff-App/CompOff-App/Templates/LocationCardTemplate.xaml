@@ -16,7 +16,7 @@
         StrokeShape="RoundRectangle 8"
         StrokeThickness="1"
         WidthRequest="180">
-        <Grid ColumnDefinitions="*" RowDefinitions="*,auto">
+        <Grid ColumnDefinitions="*" RowDefinitions="*,auto,auto,auto">
             <Border
                 Grid.Row="0"
                 Padding="0"
@@ -28,7 +28,7 @@
                 <Image
                     Aspect="AspectFill"
                     HorizontalOptions="Fill"
-                    Source="{Binding ImagePath}" />
+                    Source="Resources/Images/Sample.jpg" />
             </Border>
             <Label
                 Grid.Row="1"
@@ -40,6 +40,14 @@
                 LineBreakMode="WordWrap"
                 Text="{Binding Name}"
                 TextColor="{StaticResource Primary}" />
+            <Label
+                Grid.Row="3"
+                Margin="0,2,0,0"
+                FontSize="14"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Distance, StringFormat='{0:F2} km away'}"
+                TextColor="Black" />
         </Grid>
     </Border>
 </DataTemplate>
