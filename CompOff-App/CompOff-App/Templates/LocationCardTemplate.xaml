@@ -46,7 +46,7 @@
                 FontSize="14"
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
-                Text="{Binding Distance, StringFormat='{0:F2} km away'}"
+                Text="{Binding Distance, StringFormat='About {0:F2} km away'}"
                 TextColor="Black" />
         </Grid>
     </Border>

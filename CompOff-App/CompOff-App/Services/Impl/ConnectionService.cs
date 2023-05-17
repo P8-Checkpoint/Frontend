@@ -15,7 +15,7 @@ namespace CompOff_App.Services.Impl;
 
 public class ConnectionService : IConnectionService
 {
-    private readonly string baseUri = "http://192.168.87.135:5000/api/"; 
+    private readonly string baseUri = "http://192.168.1.102:5000/api/"; 
     private readonly HttpClient _httpClient = new();
 
     public ConnectionService()

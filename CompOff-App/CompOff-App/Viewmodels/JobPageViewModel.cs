@@ -190,10 +190,16 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
     [RelayCommand]
     public async Task Stop()
     {
+        IsPreparing = true;
+        OnPropertyChanged(nameof(IsPreparing));
         var success = _fileService.DownloadCheckpointIsh(CurrentJob);
         if (!success)
             await _dataService.ClearDataAndLogout();
 
         await _connectionService.StopJobAsync(CurrentJob);
+        Thread.Sleep(100);
+        IsPreparing = false;
+        OnPropertyChanged(nameof(IsPreparing));
+        await Update();
     }
 }
