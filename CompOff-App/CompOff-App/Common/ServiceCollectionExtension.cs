@@ -13,9 +13,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CompOff_App.Common
 {
+    [ExcludeFromCodeCoverage]
     internal static class ServiceCollectionExtension
     {
         public static MauiAppBuilder AddPages(this MauiAppBuilder builder)
