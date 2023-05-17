@@ -1,4 +1,4 @@
-﻿using CompOff_App.Viewmodels;
+﻿using Viewmodels;
 
 namespace CompOff_App;
 

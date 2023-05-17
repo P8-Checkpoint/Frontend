@@ -1,5 +1,5 @@
 ﻿using CompOff_App.Pages;
-using CompOff_App.Shared;
+using Shared;
 
 namespace CompOff_App;
 

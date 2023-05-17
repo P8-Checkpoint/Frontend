@@ -1,5 +1,5 @@
 using CommunityToolkit.Mvvm.Input;
-using CompOff_App.Viewmodels.Tabs;
+using Viewmodels.Tabs;
 using Microsoft.Maui;
 
 namespace CompOff_App.Pages.Tabs;

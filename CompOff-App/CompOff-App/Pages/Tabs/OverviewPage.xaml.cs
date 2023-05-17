@@ -1,4 +1,4 @@
-using CompOff_App.Viewmodels.Tabs;
+using Viewmodels.Tabs;
 
 namespace CompOff_App.Pages.Tabs;
 

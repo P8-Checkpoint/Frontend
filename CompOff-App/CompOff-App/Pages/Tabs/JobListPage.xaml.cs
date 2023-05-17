@@ -1,6 +1,6 @@
-using CompOff_App.Models;
-using CompOff_App.Services;
-using CompOff_App.Viewmodels.Tabs;
+using Models;
+using Viewmodels;
+using Viewmodels.Tabs;
 
 namespace CompOff_App.Pages.Tabs;
 

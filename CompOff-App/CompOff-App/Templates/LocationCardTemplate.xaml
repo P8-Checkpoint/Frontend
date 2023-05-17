@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="[components ]clr-namespace:CompOff_App.Components"
     xmlns:converters="clr-namespace:CompOff_App.Converters"
-    xmlns:models="clr-namespace:CompOff_App.Models"
-    xmlns:viewmodels="clr-namespace:CompOff_App.Viewmodels.Tabs"
+    xmlns:models="clr-namespace:Models;assembly=Models"
+    xmlns:viewmodels="clr-namespace:Viewmodels.Tabs;assembly=Viewmodels"
     x:DataType="models:Location">
     <Border
         Margin="5,0"

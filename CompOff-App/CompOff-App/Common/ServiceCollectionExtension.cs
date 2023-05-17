@@ -1,11 +1,11 @@
 ﻿using CompOff_App.Pages;
 using CompOff_App.Pages.Tabs;
-using CompOff_App.Services;
-using CompOff_App.Services.Impl;
-using CompOff_App.Viewmodels;
-using CompOff_App.Viewmodels.Tabs;
-using CompOff_App.Wrappers;
-using CompOff_App.Wrappers.Impl;
+using Viewmodels;
+using Services;
+using Services.Impl;
+using Wrappers;
+using Wrappers.Impl;
+using Viewmodels.Tabs;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Storage;
 using System;
@@ -42,9 +42,7 @@ namespace CompOff_App.Common
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             builder.Services.AddSingleton<IFileService, FileService>();
             builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
-#if ANDROID
             builder.Services.AddSingleton<INetworkService, NetworkService>();
-#endif
             return builder;
         }
 

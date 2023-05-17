@@ -1,11 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CompOff_App.Common;
 using Xamarin.CommunityToolkit.Ports.Effects;
-#if IOS
-using Xamarin.CommunityToolkit.Ports.iOS.Effects;
-#elif ANDROID
 using Xamarin.CommunityToolkit.Ports.Android.Effects;
-#endif
 
 namespace CompOff_App;
 
