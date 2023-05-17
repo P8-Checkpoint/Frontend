@@ -41,8 +41,8 @@ namespace CompOff_App.Common
             builder.Services.AddSingleton<IDataService, DataService>();
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             builder.Services.AddSingleton<IFileService, FileService>();
-            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
             builder.Services.AddSingleton<INetworkService, NetworkService>();
+            builder.Services.AddSingleton<IPlatformPathService, AndroidPathService>();
             return builder;
         }
 
