@@ -60,4 +60,57 @@ public class LandingPageViewModelTest
         _dataServiceMock.Verify(mock => mock.GetCurrentUserAsync(), Times.Once);
     }
 
+    [Fact]
+    public async Task Login_TokenIsNull_ExpectShowErrorTrue()
+    {
+        _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+
+        await _sut.Login("Username", "Password");
+
+        Assert.True(_sut.ShowError);
+    }
+
+
+    [Fact]
+    public async Task Login_TokenIsNull_ExpectNavigationNotCalled()
+    {
+        _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+
+        await _sut.Login("Username", "Password");
+
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, It.IsAny<bool>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task Login_UserIsNull_ExpectShowErrorTrue()
+    {
+        _dataServiceMock.Setup(mock => mock.SecureStorageGetAsync(StorageKeys.AuthTokenKey)).ReturnsAsync("1234");
+
+        await _sut.Login("Username", "Password");
+
+        Assert.True(_sut.ShowError);
+    }
+
+
+    [Fact]
+    public async Task Login_UserIsNull_ExpectNavigationNotCalled()
+    {
+        _dataServiceMock.Setup(mock => mock.SecureStorageGetAsync(StorageKeys.AuthTokenKey)).ReturnsAsync("1234");
+
+        await _sut.Login("Username", "Password");
+
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, It.IsAny<bool>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task Login_LoginSuccess_ExpectNavigationCalled()
+    {
+        _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+        _dataServiceMock.Setup(mock => mock.SecureStorageGetAsync(StorageKeys.AuthTokenKey)).ReturnsAsync("1234");
+
+        await _sut.Login("Username", "Password");
+
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.OverviewPage, It.IsAny<bool>()), Times.Once);
+    }
+
 }

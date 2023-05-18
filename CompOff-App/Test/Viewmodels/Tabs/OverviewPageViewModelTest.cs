@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Tests.Helpers;
 using Viewmodels.Tabs;
 using Wrappers;
+using Location = Models.Location;
 
 namespace Tests.Viewmodels.Tabs;
 
@@ -216,7 +217,7 @@ public class OverviewPageViewModelTest
     public async Task InitializeAsync_AddLocations_ExpectAddedToLocations()
     {
         _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
-        var locations = new List<Models.Location>()
+        var locations = new List<Location>()
         {
             DataHelper.GetLocation(1),
             DataHelper.GetLocation(2),
@@ -248,7 +249,7 @@ public class OverviewPageViewModelTest
         _sut.Locations.Add(DataHelper.GetLocation(4));
         _sut.Locations.Add(DataHelper.GetLocation(5));
 
-        var locations = new List<Models.Location>()
+        var locations = new List<Location>()
         {
             DataHelper.GetLocation(1),
             DataHelper.GetLocation(2),
@@ -266,7 +267,7 @@ public class OverviewPageViewModelTest
     {
         _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
 
-        var locations = new List<Models.Location>()
+        var locations = new List<Location>()
         {
             DataHelper.GetLocation(3),
             DataHelper.GetLocation(2),
