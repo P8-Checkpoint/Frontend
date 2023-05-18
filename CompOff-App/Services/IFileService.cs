@@ -14,4 +14,5 @@ public interface IFileService
     public bool DownloadScript(Job job);
     public bool UploadCheckpointIsh(Job job);
     public bool DownloadCheckpointIsh(Job job);
+    public Task<Script> PickFile();
 }

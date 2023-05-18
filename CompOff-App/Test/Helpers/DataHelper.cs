@@ -59,4 +59,22 @@ internal static class DataHelper
             _ => new Models.Location("Location 5", 50, 50, 50),
         };
     }
+
+    public static Script GetScript(int n)
+    {
+        return n switch
+        {
+            1 => new Script("Script 1.py", "path"),
+            _ => new Script("Script 2.py", "path"),
+        };
+    }
+
+    public static Script GetIncorrectScript(int n)
+    {
+        return n switch
+        {
+            1 => new Script("Script 1.txt", "path"),
+            _ => new Script("Script 2.txt", "path"),
+        };
+    }
 }

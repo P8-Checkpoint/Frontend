@@ -47,7 +47,7 @@ public partial class NewJobPageViewModel : BaseViewModel
             return;
 
         IsBusy = true;
-        await ResetErrors();
+        ResetErrors();
         await LoadCurrentUser();
         IsBusy = false;
     }
@@ -57,19 +57,18 @@ public partial class NewJobPageViewModel : BaseViewModel
         CurrentUser = await _dataService.GetCurrentUserAsync();
     }
 
-    private Task ResetErrors()
+    private void ResetErrors()
     {
         ShowTitleError = false;
         ShowDescriptionError = false;
         ShowFileError = false;
-        return Task.CompletedTask;
     }
 
-    private async Task Clear()
+    private void Clear()
     {
         FileName = "No file chosen...";
         _filePath = string.Empty;
-        await ResetErrors();
+        ResetErrors();
     }
 
     public async Task AddJob(string name, string description)
@@ -82,30 +81,30 @@ public partial class NewJobPageViewModel : BaseViewModel
             return;
         var job = await _dataService.AddJobAsync(name, description);
         _fileService.AddScript(job.JobID, _filePath);
-        await Clear();
+        Clear();
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
     }
 
     [RelayCommand]
     public async Task PickFile(object arg)
     {
-        await PickAndShow(new PickOptions());
+        await PickAndShow();
     }
 
-    public async Task PickAndShow(PickOptions options)
+    private async Task PickAndShow()
     {
         try
         {
-            var result = await FilePicker.Default.PickAsync(options);
-            if (result != null)
+            var script = await _fileService.PickFile();
+            if (script != null)
             {
-                if (!result.FileName.EndsWith("py", StringComparison.OrdinalIgnoreCase))
+                if (!script.FileName.EndsWith("py", StringComparison.OrdinalIgnoreCase))
                 {
                     ShowFileError = true;
                     return;
                 }
-                    FileName = result.FileName;
-                _filePath = result.FullPath;
+                    FileName = script.FileName;
+                _filePath = script.FullPath;
             }
 
         }

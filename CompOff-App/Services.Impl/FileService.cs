@@ -114,7 +114,14 @@ public class FileService : IFileService
             Console.WriteLine(e.ToString());
             return false;
         }
+    }
 
+    public async Task<Script> PickFile()
+    {
+        var result = await FilePicker.Default.PickAsync(new PickOptions());
+        if (result != null)
+            return new Script(result.FileName, result.FullPath);
 
+        return null;
     }
 }
