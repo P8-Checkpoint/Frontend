@@ -44,7 +44,7 @@ public class JobListPageViewModelTest
     }
 
     [Fact]
-    public async Task InitializeAsync_SetsCurrentUser_ExpectCurrentUserSetAsync()
+    public async Task InitializeAsync_SetsCurrentUser_ExpectCurrentUserSet()
     {
         var expected = DataHelper.GetUser(1).UserName;
         _sut.CurrentUser = null;

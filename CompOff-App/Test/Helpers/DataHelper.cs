@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using DataTransferObjects;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,102 @@ internal static class DataHelper
         {
             1 => new Script("Script 1.txt", "path"),
             _ => new Script("Script 2.txt", "path"),
+        };
+    }
+    
+    public static Job GetJob(int n)
+    {
+        return n switch
+        {
+            1 => new Job()
+            {
+                JobID = DummyGuid(1),
+                JobName = "Job1",
+                Description = "Description1",
+                Status = JobStatus.Waiting,
+                SourcePath = "SourcePath1",
+                BackupPath = "BackupPath1",
+                ResultPath = "ResultPath1",
+                DateAdded = DummyDateTime(1),
+                LastActivity = DummyDateTime(1),
+            },
+            _ => new Job()
+            {
+                JobID = DummyGuid(2),
+                JobName = "Job2",
+                Description = "Description2",
+                Status = JobStatus.Waiting,
+                SourcePath = "SourcePath2",
+                BackupPath = "BackupPath2",
+                ResultPath = "ResultPath2",
+                DateAdded = DummyDateTime(2),
+                LastActivity = DummyDateTime(2),
+            },
+        };
+    }
+
+    public static JobDto GetJobDto(int n)
+    {
+        return n switch
+        {
+            1 => new JobDto()
+            {
+                id = DummyGuid(1),
+                name = "Job1",
+                description = "Description1",
+                status = 0,
+                sourcePath = "SourcePath1",
+                backupPath = "BackupPath1",
+                resultPath = "ResultPath1",
+                dateAdded = DummyDateTime(1),
+                lastActivity = DummyDateTime(1),
+            },
+            _ => new JobDto()
+            {
+                id = DummyGuid(2),
+                name = "Job2",
+                description = "Description2",
+                status = 5,
+                sourcePath = "SourcePath2",
+                backupPath = "BackupPath2",
+                resultPath = "ResultPath2",
+                dateAdded = DummyDateTime(2),
+                lastActivity = DummyDateTime(2),
+            },
+        };
+    }
+
+    public static WifiDto GetWifiDto(int n)
+    {
+        return n switch
+        {
+            1 => new WifiDto()
+            {
+                ssid = "ssid1",
+                password = "password1",
+            },
+            _ => new WifiDto()
+            {
+                ssid = "ssid2",
+                password = "password2",
+            }
+        };
+    }
+
+    public static PrepareDto GetPrepareDto(int n)
+    {
+        return n switch
+        {
+            1 => new PrepareDto()
+            {
+                serviceTask = GetJobDto(1),
+                wifi = GetWifiDto(1)
+            },
+            _ => new PrepareDto()
+            {
+                serviceTask = GetJobDto(2),
+                wifi = GetWifiDto(2)
+            }
         };
     }
 }

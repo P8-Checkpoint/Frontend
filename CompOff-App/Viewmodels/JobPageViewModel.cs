@@ -20,6 +20,7 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
     private readonly IConnectionService _connectionService;
     private readonly INetworkService _networkService;
     private readonly IFileService _fileService;
+
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         _ = query.TryGetValue("Job", out object? queryJob);
@@ -117,6 +118,7 @@ public partial class JobPageViewModel : BaseViewModel, IQueryAttributable
         CurrentJob = new Job(prepareDto.serviceTask);
 
         _networkService.ConnectToNetwork(prepareDto.wifi.ssid, prepareDto.wifi.password);
+
         if(status == JobStatus.Paused)
         {
             var success = _fileService.UploadCheckpointIsh(CurrentJob);

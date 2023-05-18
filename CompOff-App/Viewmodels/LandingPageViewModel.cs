@@ -40,7 +40,7 @@ public partial class LandingPageViewModel : BaseViewModel
         await _connectionService.LoginAsync(username, password);
         IsBusy = false;
 
-        var token = await SecureStorage.GetAsync(StorageKeys.AuthTokenKey);
+        var token = await _dataService.SecureStorageGetAsync(StorageKeys.AuthTokenKey);
         var user = await _dataService.GetCurrentUserAsync();
         if (token == null || user == null)
         {

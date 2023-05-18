@@ -11,378 +11,361 @@ using Tests.Helpers;
 using Viewmodels.Tabs;
 using Wrappers;
 
-namespace Tests.Viewmodels.Tabs
+namespace Tests.Viewmodels.Tabs;
+
+public class NewJobPageViewModelTest
 {
-    public class NewJobPageViewModelTest
+    private readonly NewJobPageViewModel _sut;
+    private readonly Mock<INavigationWrapper> _navigatorMock;
+    private readonly Mock<IDataService> _dataServiceMock;
+    private readonly Mock<IFileService> _fileServiceMock;
+
+    public NewJobPageViewModelTest()
     {
-        private readonly NewJobPageViewModel _sut;
-        private readonly Mock<INavigationWrapper> _navigatorMock;
-        private readonly Mock<IDataService> _dataServiceMock;
-        private readonly Mock<IFileService> _fileServiceMock;
+        _navigatorMock = new Mock<INavigationWrapper>();
+        _dataServiceMock = new Mock<IDataService>();
+        _fileServiceMock = new Mock<IFileService>();
 
-        public NewJobPageViewModelTest()
-        {
-            _navigatorMock = new Mock<INavigationWrapper>();
-            _dataServiceMock = new Mock<IDataService>();
-            _fileServiceMock = new Mock<IFileService>();
+        _sut = new NewJobPageViewModel(_navigatorMock.Object, _dataServiceMock.Object, _fileServiceMock.Object);
+    }
 
-            _sut = new NewJobPageViewModel(_navigatorMock.Object, _dataServiceMock.Object, _fileServiceMock.Object);
-        }
+    [Fact]
+    public async Task InitializeAsync_SetsCurrentUser_ExpectCurrentUserSet()
+    {
+        var expected = DataHelper.GetUser(1).UserName;
+        _sut.CurrentUser = null;
 
-        [Fact]
-        public async Task InitializeAsync_SetsCurrentUser_ExpectCurrentUserSetAsync()
-        {
-            var expected = DataHelper.GetUser(1).UserName;
-            _sut.CurrentUser = null;
+        _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
 
-            _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+        await _sut.InitializeAsync();
 
-            await _sut.InitializeAsync();
+        var actual = _sut.CurrentUser?.UserName;
 
-            var actual = _sut.CurrentUser?.UserName;
+        Assert.Equal(expected, actual);
+    }
 
-            Assert.Equal(expected, actual);
-        }
+    [Fact]
+    public async Task InitializeAsync_HandleAlreadyBusy_ExpectNothingCalled()
+    {
+        
+        _sut.IsBusy = true;
 
-        [Fact]
-        public async Task InitializeAsync_HandleAlreadyBusy_ExpectNothingCalled()
-        {
-            
-            _sut.IsBusy = true;
+        await _sut.InitializeAsync();
 
-            await _sut.InitializeAsync();
+        _dataServiceMock.Verify(mock => mock.GetCurrentUserAsync(), Times.Never);
+    }
 
-            _dataServiceMock.Verify(mock => mock.GetCurrentUserAsync(), Times.Never);
-        }
+    [Fact]
+    public async Task InitializeAsync_HandleAlreadyBusy_ExpectNothingReset()
+    {
+        _sut.ShowDescriptionError = true;
+        _sut.ShowTitleError = true;
+        _sut.ShowFileError = true;
 
-        [Fact]
-        public async Task InitializeAsync_HandleAlreadyBusy_ExpectNothingReset()
-        {
-            _sut.ShowDescriptionError = true;
-            _sut.ShowTitleError = true;
-            _sut.ShowFileError = true;
+        _sut.IsBusy = true;
 
-            _sut.IsBusy = true;
+        await _sut.InitializeAsync();
 
-            await _sut.InitializeAsync();
+        Assert.True(_sut.ShowDescriptionError);
+        Assert.True(_sut.ShowTitleError);
+        Assert.True(_sut.ShowFileError);
+    }
 
-            Assert.True(_sut.ShowDescriptionError);
-            Assert.True(_sut.ShowTitleError);
-            Assert.True(_sut.ShowFileError);
-        }
+    [Fact]
+    public async Task InitializeAsync_HandleNotBusy_ExpectMethodsCalled()
+    {
+        await _sut.InitializeAsync();
 
-        [Fact]
-        public async Task InitializeAsync_HandleNotBusy_ExpectMethodsCalled()
-        {
-            await _sut.InitializeAsync();
+        _dataServiceMock.Verify(mock => mock.GetCurrentUserAsync(), Times.Once);
+    }
 
-            _dataServiceMock.Verify(mock => mock.GetCurrentUserAsync(), Times.Once);
-        }
+    [Fact]
+    public async Task InitializeAsync_ResetsErrors_ExpectErrorsReset()
+    {
+        _sut.ShowDescriptionError = true;
+        _sut.ShowTitleError = true;
+        _sut.ShowFileError = true;
 
-        [Fact]
-        public async Task InitializeAsync_ResetsErrors_ExpectErrorsReset()
-        {
-            _sut.ShowDescriptionError = true;
-            _sut.ShowTitleError = true;
-            _sut.ShowFileError = true;
+        await _sut.InitializeAsync();
 
-            await _sut.InitializeAsync();
+        Assert.False(_sut.ShowDescriptionError);
+        Assert.False(_sut.ShowTitleError);
+        Assert.False(_sut.ShowFileError);
+    }
 
-            Assert.False(_sut.ShowDescriptionError);
-            Assert.False(_sut.ShowTitleError);
-            Assert.False(_sut.ShowFileError);
-        }
+    [Fact]
+    public void PickFile_CheckCommandExistence_NotNull()
+    {
+        Assert.NotNull(_sut.PickFileCommand);
+    }
 
-        [Fact]
-        public async Task InitializeAsync_SetsCurrentUser_ExpectCurrentUserSet()
-        {
-            var expected = DataHelper.GetUser(1).UserName;
-            _sut.CurrentUser = null;
+    [Fact]
+    public void PickFile_FileIsNull_ExpectFileNameNotChanged()
+    {
+        var expected = DataHelper.GetScript(1).FileName;
+        _sut.FileName = expected;
 
-            _dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+        _sut.PickFileCommand.ExecuteAsync(null);
 
-            await _sut.InitializeAsync();
+        Assert.Equal(_sut.FileName, expected);
+    }
 
-            var actual = _sut.CurrentUser?.UserName;
+    [Fact]
+    public void PickFile_FileIsWrongFormat_ExpectFileNameNotChanged()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetIncorrectScript(1));
+        var expected = DataHelper.GetScript(1).FileName;
+        _sut.FileName = expected;
 
-            Assert.Equal(expected, actual);
-        }
+        _sut.PickFileCommand.ExecuteAsync(null);
 
-        [Fact]
-        public void PickFile_CheckCommandExistence_NotNull()
-        {
-            Assert.NotNull(_sut.PickFileCommand);
-        }
+        Assert.Equal(_sut.FileName, expected);
+    }
 
-        [Fact]
-        public void PickFile_FileIsNull_ExpectFileNameNotChanged()
-        {
-            var expected = DataHelper.GetScript(1).FileName;
-            _sut.FileName = expected;
+    [Fact]
+    public void PickFile_FileIsWrongFormat_ExpectShowFileError()
+    {
+        _sut.ShowFileError = false;
 
-            _sut.PickFileCommand.ExecuteAsync(null);
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetIncorrectScript(1));
 
-            Assert.Equal(_sut.FileName, expected);
-        }
+        _sut.PickFileCommand.ExecuteAsync(null);
 
-        [Fact]
-        public void PickFile_FileIsWrongFormat_ExpectFileNameNotChanged()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetIncorrectScript(1));
-            var expected = DataHelper.GetScript(1).FileName;
-            _sut.FileName = expected;
+        Assert.True(_sut.ShowFileError);
+    }
 
-            _sut.PickFileCommand.ExecuteAsync(null);
+    [Fact]
+    public void PickFile_FileIsPicked_ExpectFileNameChanged()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        var expected = DataHelper.GetScript(1).FileName;
+        _sut.FileName = DataHelper.GetScript(2).FileName;
 
-            Assert.Equal(_sut.FileName, expected);
-        }
+        _sut.PickFileCommand.ExecuteAsync(null);
 
-        [Fact]
-        public void PickFile_FileIsWrongFormat_ExpectShowFileError()
-        {
-            _sut.ShowFileError = false;
+        Assert.Equal(_sut.FileName, expected);
+    }
 
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetIncorrectScript(1));
+    [Fact]
+    public async Task AddJob_NoName_ExpectShowTitleError()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _sut.ShowDescriptionError = false;
+        _sut.ShowTitleError = false;
+        _sut.ShowFileError = false;
 
-            _sut.PickFileCommand.ExecuteAsync(null);
+        _sut.PickFileCommand.Execute(null);
 
-            Assert.True(_sut.ShowFileError);
-        }
+        await _sut.AddJob("", "Description");
 
-        [Fact]
-        public void PickFile_FileIsPicked_ExpectFileNameChanged()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            var expected = DataHelper.GetScript(1).FileName;
-            _sut.FileName = DataHelper.GetScript(2).FileName;
+        Assert.True(_sut.ShowTitleError);
+        Assert.False(_sut.ShowFileError);
+        Assert.False(_sut.ShowDescriptionError);
+    }
 
-            _sut.PickFileCommand.ExecuteAsync(null);
+    [Fact]
+    public async Task AddJob_NoName_ExpectMethodsNotCalled()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
 
-            Assert.Equal(_sut.FileName, expected);
-        }
+        _sut.PickFileCommand.Execute(null);
 
-        [Fact]
-        public async Task AddJob_NoName_ExpectShowTitleError()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _sut.ShowDescriptionError = false;
-            _sut.ShowTitleError = false;
-            _sut.ShowFileError = false;
+        await _sut.AddJob("", "Description");
 
-            _sut.PickFileCommand.Execute(null);
+        _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()),Times.Never);
+        _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
+    }
 
-            await _sut.AddJob("", "Description");
+    [Fact]
+    public async Task AddJob_NoName_ExpectFileNameNotReset()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
 
-            Assert.True(_sut.ShowTitleError);
-            Assert.False(_sut.ShowFileError);
-            Assert.False(_sut.ShowDescriptionError);
-        }
+        _sut.PickFileCommand.Execute(null);
 
-        [Fact]
-        public async Task AddJob_NoName_ExpectMethodsNotCalled()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        var expected = DataHelper.GetScript(1).FileName;
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.FileName = expected;
 
-            await _sut.AddJob("", "Description");
+        await _sut.AddJob("", "Description");
 
-            _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()),Times.Never);
-            _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
-            _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
-        }
+        Assert.Equal(expected, _sut.FileName);
+    }
 
-        [Fact]
-        public async Task AddJob_NoName_ExpectFileNameNotReset()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+    [Fact]
+    public async Task AddJob_NoDescription_ExpectShowDescriptionError()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _sut.ShowDescriptionError = false;
+        _sut.ShowTitleError = false;
+        _sut.ShowFileError = false;
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.PickFileCommand.Execute(null);
 
-            var expected = DataHelper.GetScript(1).FileName;
+        await _sut.AddJob("Name", "");
 
-            _sut.FileName = expected;
+        Assert.False(_sut.ShowTitleError);
+        Assert.False(_sut.ShowFileError);
+        Assert.True(_sut.ShowDescriptionError);
+    }
 
-            await _sut.AddJob("", "Description");
+    [Fact]
+    public async Task AddJob_NoDescription_ExpectMethodsNotCalled()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
 
-            Assert.Equal(expected, _sut.FileName);
-        }
+        _sut.PickFileCommand.Execute(null);
 
-        [Fact]
-        public async Task AddJob_NoDescription_ExpectShowDescriptionError()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _sut.ShowDescriptionError = false;
-            _sut.ShowTitleError = false;
-            _sut.ShowFileError = false;
+        await _sut.AddJob("Name", "");
 
-            _sut.PickFileCommand.Execute(null);
+        _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
+    }
 
-            await _sut.AddJob("Name", "");
+    [Fact]
+    public async Task AddJob_NoDescription_ExpectFileNameNotReset()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
 
-            Assert.False(_sut.ShowTitleError);
-            Assert.False(_sut.ShowFileError);
-            Assert.True(_sut.ShowDescriptionError);
-        }
+        _sut.PickFileCommand.Execute(null);
 
-        [Fact]
-        public async Task AddJob_NoDescription_ExpectMethodsNotCalled()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        var expected = DataHelper.GetScript(1).FileName;
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.FileName = expected;
 
-            await _sut.AddJob("Name", "");
+        await _sut.AddJob("Name", "");
 
-            _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
-            _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
-        }
+        Assert.Equal(expected, _sut.FileName);
+    }
 
-        [Fact]
-        public async Task AddJob_NoDescription_ExpectFileNameNotReset()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+    [Fact]
+    public async Task AddJob_NoFile_ExpectShowFileError()
+    {
+        _sut.ShowDescriptionError = false;
+        _sut.ShowTitleError = false;
+        _sut.ShowFileError = false;
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.PickFileCommand.Execute(null);
 
-            var expected = DataHelper.GetScript(1).FileName;
+        await _sut.AddJob("Name", "Description");
 
-            _sut.FileName = expected;
+        Assert.False(_sut.ShowTitleError);
+        Assert.True(_sut.ShowFileError);
+        Assert.False(_sut.ShowDescriptionError);
+    }
 
-            await _sut.AddJob("Name", "");
+    [Fact]
+    public async Task AddJob_NoFile_ExpectMethodsNotCalled()
+    {
+        _sut.PickFileCommand.Execute(null);
 
-            Assert.Equal(expected, _sut.FileName);
-        }
+        await _sut.AddJob("Name", "Description");
 
-        [Fact]
-        public async Task AddJob_NoFile_ExpectShowFileError()
-        {
-            _sut.ShowDescriptionError = false;
-            _sut.ShowTitleError = false;
-            _sut.ShowFileError = false;
+        _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
+    }
 
-            _sut.PickFileCommand.Execute(null);
+    [Fact]
+    public async Task AddJob_NoFile_ExpectFileNameNotReset()
+    {
+        _sut.PickFileCommand.Execute(null);
 
-            await _sut.AddJob("Name", "Description");
+        var expected = DataHelper.GetScript(1).FileName;
 
-            Assert.False(_sut.ShowTitleError);
-            Assert.True(_sut.ShowFileError);
-            Assert.False(_sut.ShowDescriptionError);
-        }
+        _sut.FileName = expected;
 
-        [Fact]
-        public async Task AddJob_NoFile_ExpectMethodsNotCalled()
-        {
-            _sut.PickFileCommand.Execute(null);
+        await _sut.AddJob("Name", "Description");
 
-            await _sut.AddJob("Name", "Description");
+        Assert.Equal(expected, _sut.FileName);
+    }
 
-            _dataServiceMock.Verify(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _fileServiceMock.Verify(mock => mock.AddScript(It.IsAny<Guid>(), It.IsAny<string>()), Times.Never);
-            _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(It.IsAny<string>(), It.IsAny<bool>()), Times.Never);
-        }
+    [Fact]
+    public async Task AddJob_AllFilled_ExpectNoErrors()
+    {
 
-        [Fact]
-        public async Task AddJob_NoFile_ExpectFileNameNotReset()
-        {
-            _sut.PickFileCommand.Execute(null);
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
+        _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
 
-            var expected = DataHelper.GetScript(1).FileName;
+        _sut.ShowDescriptionError = true;
+        _sut.ShowTitleError = true;
+        _sut.ShowFileError = true;
 
-            _sut.FileName = expected;
+        _sut.PickFileCommand.Execute(null);
 
-            await _sut.AddJob("Name", "Description");
+        await _sut.AddJob("Name", "Description");
 
-            Assert.Equal(expected, _sut.FileName);
-        }
+        Assert.False(_sut.ShowTitleError);
+        Assert.False(_sut.ShowFileError);
+        Assert.False(_sut.ShowDescriptionError);
+    }
 
-        [Fact]
-        public async Task AddJob_AllFilled_ExpectNoErrors()
-        {
+    [Fact]
+    public async Task AddJob_AllFilled_ExpectAddJobWithNameAndDescription()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
+        _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
 
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
-            _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
+        _sut.PickFileCommand.Execute(null);
 
-            _sut.ShowDescriptionError = true;
-            _sut.ShowTitleError = true;
-            _sut.ShowFileError = true;
+        await _sut.AddJob("Name", "Description");
 
-            _sut.PickFileCommand.Execute(null);
+        _dataServiceMock.Verify(mock => mock.AddJobAsync("Name", "Description"), Times.Once);
+    }
 
-            await _sut.AddJob("Name", "Description");
+    [Fact]
+    public async Task AddJob_AllFilled_ExpectAddScriptWithJobIdAndFilePath()
+    {
 
-            Assert.False(_sut.ShowTitleError);
-            Assert.False(_sut.ShowFileError);
-            Assert.False(_sut.ShowDescriptionError);
-        }
+        
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
+        _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
 
-        [Fact]
-        public async Task AddJob_AllFilled_ExpectAddJobWithNameAndDescription()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
-            _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
+        _sut.PickFileCommand.Execute(null);
 
-            _sut.PickFileCommand.Execute(null);
+        await _sut.AddJob("Name", "Description");
+        var expectedId = DataHelper.DummyGuid(1);
+        var expectedPath = DataHelper.GetScript(1).FullPath;
 
-            await _sut.AddJob("Name", "Description");
+        _fileServiceMock.Verify(mock => mock.AddScript(expectedId, expectedPath), Times.Once);
+    }
 
-            _dataServiceMock.Verify(mock => mock.AddJobAsync("Name", "Description"), Times.Once);
-        }
+    [Fact]
+    public async Task AddJob_AllFilled_ExpectNavigationCalled()
+    {
 
-        [Fact]
-        public async Task AddJob_AllFilled_ExpectAddScriptWithJobIdAndFilePath()
-        {
 
-            
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
-            _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
+        _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.PickFileCommand.Execute(null);
 
-            await _sut.AddJob("Name", "Description");
-            var expectedId = DataHelper.DummyGuid(1);
-            var expectedPath = DataHelper.GetScript(1).FullPath;
+        await _sut.AddJob("Name", "Description");
 
-            _fileServiceMock.Verify(mock => mock.AddScript(expectedId, expectedPath), Times.Once);
-        }
+        _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()), Times.Once);
+    }
 
-        [Fact]
-        public async Task AddJob_AllFilled_ExpectNavigationCalled()
-        {
+    [Fact]
+    public async Task AddJob_AllFilled_ExpectFileNameReset()
+    {
+        _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
+        _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
+        _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
 
+        _sut.PickFileCommand.Execute(null);
 
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
-            _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
+        var expected = "No file chosen...";
 
-            _sut.PickFileCommand.Execute(null);
+        _sut.FileName = DataHelper.GetScript(1).FileName;
 
-            await _sut.AddJob("Name", "Description");
+        await _sut.AddJob("Name", "Description");
 
-            _navigatorMock.Verify(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()), Times.Once);
-        }
-
-        [Fact]
-        public async Task AddJob_AllFilled_ExpectFileNameReset()
-        {
-            _fileServiceMock.Setup(mock => mock.PickFile()).ReturnsAsync(DataHelper.GetScript(1));
-            _dataServiceMock.Setup(mock => mock.AddJobAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(new Job() { JobID = DataHelper.DummyGuid(1) });
-            _navigatorMock.Setup(mock => mock.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, It.IsAny<bool>()));
-
-            _sut.PickFileCommand.Execute(null);
-
-            var expected = "No file chosen...";
-
-            _sut.FileName = DataHelper.GetScript(1).FileName;
-
-            await _sut.AddJob("Name", "Description");
-
-            Assert.Equal(expected, _sut.FileName);
-        }
-
+        Assert.Equal(expected, _sut.FileName);
     }
 }

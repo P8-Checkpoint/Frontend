@@ -17,4 +17,6 @@ public interface IDataService
     public Task<Job> GetJobByIdAsync(Guid id);
     public Task<Job> AddJobAsync(string name, string description);
     public Task ClearDataAndLogout();
+    public Task<string> SecureStorageGetAsync(string key);
+    public Task SecureStorageSetAsync(string key, string value);
 }

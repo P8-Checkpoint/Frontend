@@ -74,4 +74,13 @@ public class DataService : IDataService
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage);
     }
 
+    public async Task<string> SecureStorageGetAsync(string key)
+    {
+        return await SecureStorage.GetAsync(key);
+    }
+
+    public async Task SecureStorageSetAsync(string key, string value)
+    {
+        await SecureStorage.SetAsync(key, value);
+    }
 }
