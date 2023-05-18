@@ -33,7 +33,18 @@ internal static class DataHelper
             6 => new User("Pierce", "Hawthorne", "Anastasia"),
             7 => new User("Shirley", "Bennet", "Big_Cheddar"),
             _ => new User("Ben", "Chang", "El_Tigre_Chino"),
+        };
+    }
 
+    public static DateTime DummyDateTime(int n)
+    {
+        return n switch
+        {
+            1 => new DateTime(2023, 1, 5),
+            2 => new DateTime(2023, 1, 4),
+            3 => new DateTime(2023, 1, 3),
+            4 => new DateTime(2023, 1, 2),
+            _ => new DateTime(2023, 1, 1)
         };
     }
 }

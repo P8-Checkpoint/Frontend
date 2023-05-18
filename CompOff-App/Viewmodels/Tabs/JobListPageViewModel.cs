@@ -40,8 +40,6 @@ public partial class JobListPageViewModel : BaseViewModel
         List<Task> tasks = new() { LoadLatestJobs() };
         await Task.WhenAll(tasks);
         IsBusy = false;
-
-        await Task.CompletedTask;
     }
 
     private async Task LoadCurrentUser()
