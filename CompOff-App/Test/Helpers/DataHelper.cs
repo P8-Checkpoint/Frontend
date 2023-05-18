@@ -47,4 +47,16 @@ internal static class DataHelper
             _ => new DateTime(2023, 1, 1)
         };
     }
+
+    public static Models.Location GetLocation(int n)
+    {
+        return n switch
+        {
+            1 => new Models.Location("Location 1", 50, 50, 10),
+            2 => new Models.Location("Location 2", 50, 50, 20),
+            3 => new Models.Location("Location 3", 50, 50, 30),
+            4 => new Models.Location("Location 4", 50, 50, 40),
+            _ => new Models.Location("Location 5", 50, 50, 50),
+        };
+    }
 }

@@ -87,12 +87,6 @@ public partial class OverviewPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private async Task Nav(object arg)
-    {
-        await _navigator.RouteAndReplaceStackAsync(NavigationKeys.LandingPage, false);
-    }
-
-    [RelayCommand]
     public async Task JobClicked(Job job)
     {
         await _navigator.RouteAsync(NavigationKeys.JobPage, new Dictionary<string, object>
@@ -102,20 +96,20 @@ public partial class OverviewPageViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private async Task ShowAllJobs(object arg)
+    public async Task ShowAllJobs(object arg)
     {
         await _navigator.RouteAndReplaceStackAsync(NavigationKeys.JobListPage, false);
     }
 
     [RelayCommand]
-    private void AccordionCollapse()
+    public void AccordionCollapse(object arg)
     {
         Collapsed = !Collapsed;
         OnPropertyChanged(nameof(Collapsed));
     }
 
     [RelayCommand]
-    private void DisconnectFromNetwork()
+    public void DisconnectFromNetwork(object arg)
     {
         _networkService.DisconnectFromNetwork();
 
