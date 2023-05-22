@@ -16,7 +16,7 @@ namespace Services.Impl;
 
 public class ConnectionService : IConnectionService
 {
-    private readonly string baseUri = "http://192.168.1.102:5000/api/"; 
+    private readonly string baseUri = "http://192.168.1.5:5000/api/"; 
     private readonly HttpClient _httpClient = new();
 
     public ConnectionService()
@@ -47,6 +47,7 @@ public class ConnectionService : IConnectionService
         }
         catch (Exception e)
         {
+            throw;
         }
     }
 
@@ -62,6 +63,7 @@ public class ConnectionService : IConnectionService
         }
         catch (Exception e)
         {
+            throw;
         }
     }
 

@@ -39,7 +39,7 @@ public class FileService : IFileService
             var split = subStr[3].Split("/");
             var remote = split[0] + "/" +  split[1];
             var local = _cacheDir + "/" + job.JobID + "_Directory";
-            var path = $"{_platformPathService.GetDownloadDirectoryPath}/{job.JobName.Replace(" ", "")}_Directory";
+            var path = $"{_platformPathService.GetDownloadDirectoryPath()}/{job.JobName.Replace(" ", "")}_Directory";
             ftpClient.Connect();
             ftpClient.DownloadDirectory(local, remote);
             ftpClient.DownloadDirectory(path, remote);
@@ -103,7 +103,7 @@ public class FileService : IFileService
         {
             string[] subStr = job.ResultPath.Split(":");
             var ftpClient = new FtpClient(subStr[0], subStr[1], subStr[2]);                
-            var path = $"{_platformPathService.GetDownloadDirectoryPath}/{job.JobName.Replace(" ", "")}_Result.txt";
+            var path = $"{_platformPathService.GetDownloadDirectoryPath()}/{job.JobName.Replace(" ", "")}_Result.txt";
             ftpClient.Connect();
             ftpClient.DownloadFile(path, subStr[3] + "/done.txt");
             ftpClient.Disconnect();
