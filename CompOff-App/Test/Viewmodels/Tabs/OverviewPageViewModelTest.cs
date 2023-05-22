@@ -2,6 +2,7 @@
 using Moq;
 using Services;
 using Shared;
+using Shared.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,32 @@ public class OverviewPageViewModelTest
 
         _sut = new OverviewPageViewModel(_navigatorMock.Object, _dataServiceMock.Object, _networkServiceMock.Object);
         //_dataServiceMock.Setup(mock => mock.GetCurrentUserAsync()).ReturnsAsync(DataHelper.GetUser(1));
+    }
+
+    [Fact]
+    public void Jobs_SetJobs_ExpectJobsSet()
+    {
+        var expected = DataHelper.GetJob(1);
+
+        _sut.Jobs = new ObservableRangeCollection<Job>()
+        {
+            DataHelper.GetJob(1)
+        };
+
+        Assert.Equal(expected, _sut.Jobs[0]);
+    }
+
+    [Fact]
+    public void Locations_SetLocations_ExpectLocationsSet()
+    {
+        var expected = DataHelper.GetLocation(1).Name;
+
+        _sut.Locations = new ObservableRangeCollection<Location>()
+        {
+            DataHelper.GetLocation(1)
+        };
+
+        Assert.Equal(expected, _sut.Locations[0].Name);
     }
 
     [Fact]
