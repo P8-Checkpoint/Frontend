@@ -31,14 +31,14 @@ public class JobListPageViewModelTest
     [Fact]
     public void Jobs_SetJobs_ExpectJobsSet()
     {
-        var expected = DataHelper.GetJob(1);
+        var expected = DataHelper.GetJob(1).JobID;
 
         _sut.Jobs = new ObservableRangeCollection<Job>()
         {
             DataHelper.GetJob(1)
         };
 
-        Assert.Equal(expected, _sut.Jobs[0]);
+        Assert.Equal(expected, _sut.Jobs[0].JobID);
     }
 
     [Fact]
