@@ -10,6 +10,7 @@ using Wrappers;
 using Tests.Helpers;
 using Shared;
 using Models;
+using Shared.Common;
 
 namespace Tests.Viewmodels.Tabs;
 
@@ -25,6 +26,19 @@ public class JobListPageViewModelTest
         _dataServiceMock = new Mock<IDataService>();
 
         _sut = new JobListPageViewModel(_navigatorMock.Object, _dataServiceMock.Object);
+    }
+
+    [Fact]
+    public void Jobs_SetJobs_ExpectJobsSet()
+    {
+        var expected = DataHelper.GetJob(1);
+
+        _sut.Jobs = new ObservableRangeCollection<Job>()
+        {
+            DataHelper.GetJob(1)
+        };
+
+        Assert.Equal(expected, _sut.Jobs[0]);
     }
 
     [Fact]
