@@ -58,6 +58,54 @@ public class JobPageViewModelTest
     }
 
     [Fact]
+    public void IsNotCollapsed_IsCollapsedTrue_ExpectIsNotCollapsedFalse()
+    {
+        _sut.Collapsed = true;
+
+        Assert.False(_sut.IsNotCollapsed);
+    }
+
+    [Fact]
+    public void IsNotCollapsed_IsCollapsedFalse_ExpectIsNotCollapsedTrue()
+    {
+        _sut.Collapsed = false;
+
+        Assert.True(_sut.IsNotCollapsed);
+    }
+
+    [Fact]
+    public void IsNotConnected_IsConnectedTrue_ExpectIsNotConnectedFalse()
+    {
+        _sut.Connected = true;
+
+        Assert.False(_sut.IsNotConnected);
+    }
+
+    [Fact]
+    public void IsNotConnected_IsConnectedFalse_ExpectIsNotConnectedTrue()
+    {
+        _sut.Connected = false;
+
+        Assert.True(_sut.IsNotConnected);
+    }
+
+    [Fact]
+    public void IsNotPreparing_IsPreparingTrue_ExpectIsNotPreparingFalse()
+    {
+        _sut.IsPreparing = true;
+
+        Assert.False(_sut.IsNotPreparing);
+    }
+
+    [Fact]
+    public void IsNotPreparing_IsPreparingFalse_ExpectIsNotPreparingTrue()
+    {
+        _sut.IsPreparing = false;
+
+        Assert.True(_sut.IsNotPreparing);
+    }
+
+    [Fact]
     public async Task InitializeAsync_SetsCurrentJob_ExpectCurrentJobSet()
     {
         var expected = DataHelper.GetJob(1).JobID;
