@@ -33,12 +33,29 @@ public class JobPageViewModelTest
         _fileServiceMock = new Mock<IFileService>();
 
         _sut = new JobPageViewModel(_fileServiceMock.Object, _navigatorMock.Object, _dataServiceMock.Object, _networkServiceMock.Object, _connectionServiceMock.Object);
+
+        _sut.ApplyQueryAttributes(new Dictionary<string, object>());
         _sut.ApplyQueryAttributes(new Dictionary<string, object>()
         {
             {"Job", DataHelper.GetJob(1) }
         });
     }
 
+    [Fact]
+    public void IsNotBusy_IsBusyTrue_ExpectIsNotBusyFalse()
+    {
+        _sut.IsBusy = true;
+
+        Assert.False( _sut.IsNotBusy);
+    }
+
+    [Fact]
+    public void IsNotBusy_IsBusyFalse_ExpectIsNotBusyTrue()
+    {
+        _sut.IsBusy = false;
+
+        Assert.True(_sut.IsNotBusy);
+    }
 
     [Fact]
     public async Task InitializeAsync_SetsCurrentJob_ExpectCurrentJobSet()
