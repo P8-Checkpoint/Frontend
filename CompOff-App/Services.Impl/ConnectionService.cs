@@ -47,7 +47,6 @@ public class ConnectionService : IConnectionService
         }
         catch (Exception e)
         {
-            throw;
         }
     }
 
